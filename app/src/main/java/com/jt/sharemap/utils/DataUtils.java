@@ -2,8 +2,7 @@ package com.jt.sharemap.utils;
 
 import android.graphics.Bitmap;
 
-import com.baidu.mapapi.model.LatLng;
-import com.chehejia.ampmind.logger.AMLog;
+import com.orhanobut.logger.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -15,7 +14,6 @@ import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,7 +73,7 @@ public class DataUtils {
      * @return 返回随机产生的唯一字符
      */
     public static String getOnlyStr() {
-        AMLog.v(TAG, "getOnlyStr");
+        Logger.v(TAG, "getOnlyStr");
         return UUID.randomUUID().toString();
     }
 
@@ -87,7 +85,7 @@ public class DataUtils {
      * @return 返回随机生成的字符 (不能保证不重复)
      */
     public static String generateStr(int length, String chars) {
-        AMLog.v(TAG, "generateStr");
+        Logger.v(TAG, "generateStr");
         String result = null;
         StringBuffer sb = new StringBuffer();
         Random random = new Random();
@@ -106,7 +104,7 @@ public class DataUtils {
      * @return 返回转换后的byte数据
      */
     public static byte[] hex2byte(String strhex) {
-        AMLog.v(TAG, "hex2byte");
+        Logger.v(TAG, "hex2byte");
         if (strhex == null) {
             return null;
         }
@@ -128,7 +126,7 @@ public class DataUtils {
      * @return 返回转换字符串数据
      */
     public static String byte2hex(byte[] b) {
-        AMLog.v(TAG, "byte2hex");
+        Logger.v(TAG, "byte2hex");
         StringBuffer hs = new StringBuffer(b.length);
         String stmp = "";
         int len = b.length;
@@ -151,7 +149,7 @@ public class DataUtils {
      * @return 返回加密的字符串数据
      */
     public static String encryptData2MD5(String data) {
-        AMLog.v(TAG, "encryptionData2MD5");
+        Logger.v(TAG, "encryptionData2MD5");
         String result = null;
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
@@ -170,7 +168,7 @@ public class DataUtils {
      * @return 返回加密的字符串数据
      */
     public static String encyptData2SHA(String data) {
-        AMLog.v(TAG, "encyptData2SHA");
+        Logger.v(TAG, "encyptData2SHA");
         String result = null;
         try {
             MessageDigest sha = MessageDigest.getInstance("SHA");
@@ -189,7 +187,7 @@ public class DataUtils {
      * @return 解密或加密后的数据
      */
     public static String encryptDataReversible(String data) {
-        AMLog.v(TAG, "encryptionDataReversible");
+        Logger.v(TAG, "encryptionDataReversible");
         char[] chars = data.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             chars[i] = (char) (chars[i] ^ '1');
@@ -205,7 +203,7 @@ public class DataUtils {
      * @return 换回生成的钥匙包
      */
     public static KeyPair getKeyCase(String type, int size) {
-        AMLog.v(TAG, "getKeyCase");
+        Logger.v(TAG, "getKeyCase");
         KeyPair keyPair = null;
         try {
             KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(type);
@@ -213,7 +211,7 @@ public class DataUtils {
             keyPair = keyPairGen.generateKeyPair();
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.v(TAG, e.getMessage());
+            Logger.v(TAG, e.getMessage());
         }
         return keyPair;
     }
@@ -226,7 +224,7 @@ public class DataUtils {
      * @return 返回加密的消息验证码
      */
     public static String getEncryptHMACMD5(String data, String key) {
-        AMLog.v(TAG, "getEncryptHMACMD5");
+        Logger.v(TAG, "getEncryptHMACMD5");
         String result = null;
         try {
             byte[] keyByte = key.getBytes("UTF-8");
@@ -270,7 +268,7 @@ public class DataUtils {
      * @throws Exception
      */
     public static String hmacSha1Encrypt(String encryptText, String encryptKey) throws Exception {
-        AMLog.v(TAG, "HmacSHA1Encrypt");
+        Logger.v(TAG, "HmacSHA1Encrypt");
         String result = null;
 
         byte[] data = encryptKey.getBytes(ENCODING);
@@ -301,7 +299,7 @@ public class DataUtils {
      * @throws Exception
      */
     public static byte[] encrypt(byte[] src, byte[] key, String type) {
-        AMLog.v(TAG, "encrypt");
+        Logger.v(TAG, "encrypt");
         byte[] reuslt = null;
         try {
             SecretKeySpec sKeySpec = new SecretKeySpec(key, type);
@@ -310,7 +308,7 @@ public class DataUtils {
             reuslt = cipher.doFinal(src);
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
         return reuslt;
     }
@@ -325,7 +323,7 @@ public class DataUtils {
      * @throws Exception
      */
     public static byte[] decrypt(byte[] src, byte[] key, String type) {
-        AMLog.v(TAG, "decrypt");
+        Logger.v(TAG, "decrypt");
         byte[] reuslt = null;
         try {
             SecretKeySpec sKeySpec = new SecretKeySpec(key, type);
@@ -334,7 +332,7 @@ public class DataUtils {
             reuslt = cipher.doFinal(src);
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
         return reuslt;
     }
@@ -348,7 +346,7 @@ public class DataUtils {
      * @return 返回加密后的数据
      */
     public static byte[] encrypt(PublicKey publicKey, byte[] srcBytes, String type) {
-        AMLog.v(TAG, "encrypt");
+        Logger.v(TAG, "encrypt");
         byte[] result = null;
         if (publicKey != null) {
             try {
@@ -357,7 +355,7 @@ public class DataUtils {
                 result = cipher.doFinal(srcBytes);
             } catch (Exception e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -372,7 +370,7 @@ public class DataUtils {
      * @return 返回加密后的数据
      */
     public static byte[] encrypt(PrivateKey privateKey, byte[] srcBytes, String type) {
-        AMLog.v(TAG, "encrypt");
+        Logger.v(TAG, "encrypt");
         byte[] result = null;
         if (privateKey != null) {
             try {
@@ -381,7 +379,7 @@ public class DataUtils {
                 result = cipher.doFinal(srcBytes);
             } catch (Exception e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -396,7 +394,7 @@ public class DataUtils {
      * @return 解密后的数据
      */
     public static byte[] decrypt(PrivateKey privateKey, byte[] serBytes, String type) {
-        AMLog.v(TAG, "decryot");
+        Logger.v(TAG, "decryot");
         byte[] result = null;
         if (privateKey != null) {
             try {
@@ -405,7 +403,7 @@ public class DataUtils {
                 result = cipher.doFinal(serBytes);
             } catch (Exception e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -420,7 +418,7 @@ public class DataUtils {
      * @return 解密后的数据
      */
     public static byte[] decrypt(PublicKey publicKey, byte[] serBytes, String type) {
-        AMLog.v(TAG, "decryot");
+        Logger.v(TAG, "decryot");
         byte[] result = null;
         if (publicKey != null) {
             try {
@@ -429,7 +427,7 @@ public class DataUtils {
                 result = cipher.doFinal(serBytes);
             } catch (Exception e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -443,7 +441,7 @@ public class DataUtils {
      * @return 加密后的数据
      */
     public static String encryptAESStr(String data, String key) {
-        AMLog.v(TAG, "encryptAESStr");
+        Logger.v(TAG, "encryptAESStr");
         String result = null;
         if (key != null && key.length() == 16) {
             try {
@@ -453,7 +451,7 @@ public class DataUtils {
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -467,7 +465,7 @@ public class DataUtils {
      * @return 解密后的数据
      */
     public static String decryptAESStr(String data, String key) {
-        AMLog.v(TAG, "decryptAESStr");
+        Logger.v(TAG, "decryptAESStr");
         String result = null;
         if (key != null && key.length() == 16) {
             try {
@@ -478,7 +476,7 @@ public class DataUtils {
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -492,7 +490,7 @@ public class DataUtils {
      * @return 返回加密后的数据
      */
     public static String decrypt3DESStr(String data, String key) {
-        AMLog.v(TAG, "decrypt3DESStr");
+        Logger.v(TAG, "decrypt3DESStr");
         String result = null;
         if (key != null && key.length() == 16) {
             try {
@@ -503,7 +501,7 @@ public class DataUtils {
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -517,7 +515,7 @@ public class DataUtils {
      * @return 返回解密后的原始数据
      */
     public static String encrypt3DESStr(String data, String key) {
-        AMLog.v(TAG, "encrypt3DESStr");
+        Logger.v(TAG, "encrypt3DESStr");
         String result = null;
         if (key != null && key.length() == 16) {
             try {
@@ -527,7 +525,7 @@ public class DataUtils {
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -541,7 +539,7 @@ public class DataUtils {
      * @return 返回解密后的原始数据
      */
     public static String decryptDESStr(String data, String key) {
-        AMLog.v(TAG, "decryptDESStr");
+        Logger.v(TAG, "decryptDESStr");
         String result = null;
         if (key != null && key.length() == 8) {
             try {
@@ -552,7 +550,7 @@ public class DataUtils {
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -566,7 +564,7 @@ public class DataUtils {
      * @return 返回加密后的数据
      */
     public static String encryptDESStr(String data, String key) {
-        AMLog.v(TAG, "encryptDESStr");
+        Logger.v(TAG, "encryptDESStr");
         String result = null;
         if (key != null && key.length() == 8) {
             try {
@@ -576,7 +574,7 @@ public class DataUtils {
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                AMLog.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
         return result;
@@ -590,7 +588,7 @@ public class DataUtils {
      * @return 返回加密的数据
      */
     public static String encryptPrivateKeyStr(String data, PrivateKey privateKey, String type) {
-        AMLog.v(TAG, "encryptPrivateKeyStr");
+        Logger.v(TAG, "encryptPrivateKeyStr");
         String result = null;
         try {
             byte[] resultbytes = encrypt(privateKey, data.getBytes(), type);
@@ -599,7 +597,7 @@ public class DataUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
         return result;
     }
@@ -612,7 +610,7 @@ public class DataUtils {
      * @return 返回加密后的数据
      */
     public static String encryptPublicKeyStr(String data, PublicKey publicKey, String type) {
-        AMLog.v(TAG, "encryptPublicKeyStr");
+        Logger.v(TAG, "encryptPublicKeyStr");
         String result = null;
         try {
             byte[] resultbytes = encrypt(publicKey, data.getBytes(), type);
@@ -621,7 +619,7 @@ public class DataUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
         return result;
     }
@@ -634,7 +632,7 @@ public class DataUtils {
      * @return 返回解密后的数据
      */
     public static String decryptPrivateKeyStr(String data, PrivateKey privateKey, String type) {
-        AMLog.v(TAG, "decryptPrivateKeyStr");
+        Logger.v(TAG, "decryptPrivateKeyStr");
         String result = null;
         try {
             byte[] databytes = hex2byte(data);
@@ -644,7 +642,7 @@ public class DataUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
         return result;
     }
@@ -657,7 +655,7 @@ public class DataUtils {
      * @return 返回解密后的数据
      */
     public static String decryptPublicKeyStr(String data, PublicKey publicKey, String type) {
-        AMLog.v(TAG, "decryptPublicKeyStr");
+        Logger.v(TAG, "decryptPublicKeyStr");
         String result = null;
         try {
             byte[] databytes = hex2byte(data);
@@ -667,7 +665,7 @@ public class DataUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            AMLog.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
         return result;
     }
@@ -958,48 +956,6 @@ public class DataUtils {
         String strSecond = second < 10 ? "0" + second : "" + second;//秒
 
         return strMinute + " ： " + strSecond;
-    }
-
-    public static String getLatLngDistance(LatLng start, LatLng end) {
-        //自己实现距离算法：
-        /**
-         * 计算两点之间距离
-         *
-         * @param start
-         * @param end
-         * @return String 多少m , 多少km
-         */
-        double lat1 = (Math.PI / 180) * start.latitude;
-        double lat2 = (Math.PI / 180) * end.latitude;
-
-        double lon1 = (Math.PI / 180) * start.longitude;
-        double lon2 = (Math.PI / 180) * end.longitude;
-
-        //       double Lat1r = (Math.PI/180)*(gp1.getLatitudeE6()/1E6);
-        //       double Lat2r = (Math.PI/180)*(gp2.getLatitudeE6()/1E6);
-        //       double Lon1r = (Math.PI/180)*(gp1.getLongitudeE6()/1E6);
-        //       double Lon2r = (Math.PI/180)*(gp2.getLongitudeE6()/1E6);
-
-        //地球半径
-        double R = 6371.004;
-
-        //两点间距离 m，如果想要米的话，结果*1000就可以了
-        double dis =
-                Math.acos(
-                        Math.sin(lat1) * Math.sin(lat2)
-                                + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1))
-                        * R;
-        NumberFormat nFormat = NumberFormat.getNumberInstance(); //数字格式化对象
-        if (dis < 1) { //当小于1千米的时候用,用米做单位保留一位小数
-
-            nFormat.setMaximumFractionDigits(0); //已可以设置为0，这样跟百度地图APP中计算的一样
-            dis *= 1000;
-
-            return "距离车辆" + nFormat.format(dis) + "米";
-        } else {
-            nFormat.setMaximumFractionDigits(1);
-            return "距离车辆" + nFormat.format(dis) + "千米";
-        }
     }
 
     /**

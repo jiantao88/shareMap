@@ -384,45 +384,6 @@ public class BitmapUtils {
     return bitmap;
   }
 
-  /**
-   * bitmap转为base64
-   *
-   * @param bitmap
-   * @return
-   */
-  public static String bitmapToBase64(Bitmap bitmap) {
-
-    String result = null;
-    ByteArrayOutputStream baos = null;
-    try {
-      if (bitmap != null) {
-        baos = new ByteArrayOutputStream();
-        bitmap.compress(CompressFormat.PNG, 100, baos);
-
-        baos.flush();
-        baos.close();
-
-        byte[] bitmapBytes = baos.toByteArray();
-        com.ampmind.onesdk.api.app.security.Base64.Encoder encoder =
-            com.ampmind.onesdk.api.app.security.Base64.getEncoder();
-
-        result = encoder.encodeToString(bitmapBytes);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (baos != null) {
-          baos.flush();
-          baos.close();
-        }
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-    return result;
-  }
-
   private static int calculateInSampleSize(
           BitmapFactory.Options options, int reqWidth, int reqHeight) {
     // Raw height and width of image

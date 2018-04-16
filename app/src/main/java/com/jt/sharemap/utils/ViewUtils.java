@@ -1,21 +1,15 @@
 package com.jt.sharemap.utils;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.design.widget.TabLayout;
-import android.util.TypedValue;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import com.chehejia.ampmind.logger.AMLog;
-
-import java.lang.reflect.Field;
+import com.orhanobut.logger.Logger;
 
 /**
  * Created by zhangjiantao on 2017/6/26.
@@ -71,50 +65,6 @@ public class ViewUtils {
         }
     }
 
-    /**
-     * 设置 tablayout 指示器宽度
-     *
-     * @param tabs
-     * @param leftDip
-     * @param rightDip
-     */
-    public static void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
-        Class<?> tabLayout = tabs.getClass();
-        Field tabStrip = null;
-        try {
-            tabStrip = tabLayout.getDeclaredField("mTabStrip");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-
-        tabStrip.setAccessible(true);
-        LinearLayout llTab = null;
-        try {
-            llTab = (LinearLayout) tabStrip.get(tabs);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        int left =
-                (int)
-                        TypedValue.applyDimension(
-                                TypedValue.COMPLEX_UNIT_DIP, leftDip, Resources.getSystem().getDisplayMetrics());
-        int right =
-                (int)
-                        TypedValue.applyDimension(
-                                TypedValue.COMPLEX_UNIT_DIP, rightDip, Resources.getSystem().getDisplayMetrics());
-
-        for (int i = 0; i < llTab.getChildCount(); i++) {
-            View child = llTab.getChildAt(i);
-            child.setPadding(0, 0, 0, 0);
-            LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
-            params.leftMargin = left;
-            params.rightMargin = right;
-            child.setLayoutParams(params);
-            child.invalidate();
-        }
-    }
 
     /**
      * 获取图片占用内存大小
@@ -129,7 +79,7 @@ public class ViewUtils {
             int rowBytes = bit.getRowBytes();
             int height = bit.getHeight();
             long memSize = rowBytes * height;
-            AMLog.d("ANDROID_LAB", "memSize =" + memSize + "B =" + formatFileSize(memSize));
+            Logger.d("ANDROID_LAB", "memSize =" + memSize + "B =" + formatFileSize(memSize));
         }
     }
 

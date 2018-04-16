@@ -42,7 +42,8 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.chehejia.ampmind.utils.DeviceUtil.ExistSDCard;
+import static com.jt.sharemap.utils.DeviceUtil.ExistSDCard;
+
 
 /** * 应用相关工具类 */
 @SuppressWarnings("unused")

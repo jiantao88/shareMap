@@ -2,7 +2,7 @@ package com.jt.sharemap.utils;
 
 import android.text.TextUtils;
 
-import com.chehejia.ampmind.logger.AMLog;
+import com.orhanobut.logger.Logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -99,7 +99,7 @@ public class ValidateUtil {
         boolean result = matcher.matches();
         return result;
       } else {
-        AMLog.d(TAG, "pattern regex is null");
+        Logger.d(TAG, "pattern regex is null");
       }
     }
     return false;

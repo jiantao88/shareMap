@@ -1,1 +1,1 @@
-include ':app', ':sharemapapi'
+include ':app'

@@ -17,7 +17,6 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 
 /**
- * Created by chenjianquan on 2017/1/4.
  *
  * <p>设备工具
  */
