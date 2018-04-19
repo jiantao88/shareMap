@@ -7,11 +7,16 @@ package com.jt.sharemap.common;
 
 public class Const {
 
+    public static final String FRAGMENT_TAG = "android:support:fragments";
+
     //用户相关
     public static class USERINFO_KEY {
-        public static final String USER_INFO = "mUserInfo";  //用户信息
-        public static final String IS_LOGIN = "mIsLogin";    //登录状态
-        public static final String AES = "mAES";//用户信息密钥
+        //用户信息
+        public static final String USER_INFO = "mUserInfo";
+        //登录状态
+        public static final String IS_LOGIN = "mIsLogin";
+        //用户信息密钥
+        public static final String AES = "mAES";
     }
 
     //事件Action
@@ -28,7 +33,7 @@ public class Const {
         public static final String CHAPTER_ID = "chapter_id";
         public static final String CHAPTER_NAME = "chapter_name";
         public static final String INTENT_ACTION_TYPE = "intent_action_type";
-        public static final String COLLECT_TYPE = "collect_type";//1收藏列表文章 2收藏站内文章
+        public static final String COLLECT_TYPE = "collect_type";
         public static final int INTENT_ACTION_TREE = 1;
         public static final int INTENT_ACTION_LIST = 2;
     }
@@ -42,8 +47,10 @@ public class Const {
 
     //当前页面状态
     public static class PAGE_STATE {
-        public static final int STATE_REFRESH = 0; //刷新
-        public static final int STATE_LOAD_MORE = 1;//加载更多
+        //刷新
+        public static final int STATE_REFRESH = 0;
+        //加载更多
+        public static final int STATE_LOAD_MORE = 1;
     }
 
     //列表Type

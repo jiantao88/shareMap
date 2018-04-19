@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              tools:context=".ui.login.LoginActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:theme="@style/ToolBarStyle"
+        app:titleTextColor="@color/white"
+        app:contentInsetStartWithNavigation="0dp"
+    />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/layout_tab_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_account"
+            android:layout_width="match_parent"
+            android:tag="@string/login_account"
+            android:layout_height="wrap_content"
+            android:text="@string/login_account"/>
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_sms"
+            android:layout_width="match_parent"
+            android:tag="@string/login_sms"
+            android:layout_height="wrap_content"
+            android:text="@string/login_sms"/>
+
+    </android.support.design.widget.TabLayout>
+
+</LinearLayout>

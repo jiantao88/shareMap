@@ -9,7 +9,7 @@ import com.jt.sharemap.net.NetConfig;
 import com.jt.sharemap.net.bean.BaseBean;
 import com.jt.sharemap.presenter.BasePresenter;
 import com.jt.sharemap.utils.ToastUtils;
-import com.jt.sharemap.view.IView;
+import com.jt.sharemap.ui.IView;
 
 import org.json.JSONException;
 

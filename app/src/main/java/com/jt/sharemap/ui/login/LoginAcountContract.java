@@ -1,0 +1,22 @@
+package com.jt.sharemap.ui.login;
+
+import com.jt.sharemap.ui.IView;
+
+/**
+ * <pre>
+ *     @author : zhangjiantao
+ *     e-mail : zhangjiantao@chehejia.com
+ *     time   : 2018/04/19
+ *     desc   :
+ *     version: 1.0
+ * </pre>
+ */
+public interface LoginAcountContract {
+    interface ILoginAcountPresenter {
+        void login();
+    }
+
+    interface ILoginAcountView extends IView {
+
+    }
+}

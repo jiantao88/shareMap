@@ -1,4 +1,4 @@
-package com.jt.sharemap.view;
+package com.jt.sharemap.ui;
 
 /**
  */
@@ -33,8 +33,6 @@ public interface IView {
      * 没有数据
      */
     void showEmpty();//没有数据
-
-    void collect(boolean isCollect, String result); //收藏Result
 
 
 }

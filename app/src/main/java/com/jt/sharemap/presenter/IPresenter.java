@@ -1,7 +1,7 @@
 package com.jt.sharemap.presenter;
 
 
-import com.jt.sharemap.view.IView;
+import com.jt.sharemap.ui.IView;
 
 import io.reactivex.disposables.Disposable;
 

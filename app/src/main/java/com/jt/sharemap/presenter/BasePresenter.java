@@ -1,7 +1,7 @@
 package com.jt.sharemap.presenter;
 
 
-import com.jt.sharemap.view.IView;
+import com.jt.sharemap.ui.IView;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -44,8 +44,9 @@ public class BasePresenter<V extends IView> implements IPresenter<V> {
     //添加指定的请求
     @Override
     public void addDisposable(Disposable disposable) {
-        if (mCompositeDisposable == null)
+        if (mCompositeDisposable == null){
             mCompositeDisposable = new CompositeDisposable();
+        }
         mCompositeDisposable.add(disposable);
     }
 
