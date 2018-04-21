@@ -2,16 +2,19 @@ package com.jt.sharemap.ui.login;
 
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.jt.sharemap.R;
 import com.jt.sharemap.common.Const;
 import com.jt.sharemap.event.Event;
 import com.jt.sharemap.event.RxEvent;
 import com.jt.sharemap.ui.base.BasePresenterActivity;
+import com.jt.sharemap.utils.KeyBoardUtil;
 import com.jt.sharemap.utils.ToastUtils;
-import com.orhanobut.logger.Logger;
 
 import java.util.Objects;
 
@@ -27,6 +30,14 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
     TabLayout mLayoutTabLogin;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.fl_containt)
+    FrameLayout mFlContaint;
+    private LoginSmsFragment mLoginSmsFragment;
+    private LoginAcountFragment mLoginAcountFragment;
+    private FragmentManager mFragmentManager;
+
+    public static final String FRAGMENT_TAG_ACCOUNT = "accountfragment";
+    public static final String FRAGMENT_TAG_SMS = "smsfragment";
 
 
     @Override
@@ -71,22 +82,34 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
 
     @Override
     protected void initViews() {
-
+        mLoginAcountFragment = new LoginAcountFragment();
+        mLoginSmsFragment = new LoginSmsFragment();
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentManager.beginTransaction()
+                .add(R.id.fl_containt, mLoginAcountFragment, FRAGMENT_TAG_ACCOUNT)
+                .commit();
         mLayoutTabLogin.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
-                Logger.d("onTabSelected position:" + tab.getPosition());
+                Fragment fragmentById = mFragmentManager.findFragmentById(R.id.fl_containt);
+                if (fragmentById.getTag().equals(FRAGMENT_TAG_ACCOUNT)){
+                    mFragmentManager.beginTransaction()
+                            .replace(R.id.fl_containt, mLoginSmsFragment, FRAGMENT_TAG_SMS)
+                            .commit();
+                }else {
+                    mFragmentManager.beginTransaction()
+                            .replace(R.id.fl_containt, mLoginAcountFragment, FRAGMENT_TAG_ACCOUNT)
+                            .commit();
+                }
+                KeyBoardUtil.toggle(LoginActivity.this);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                Logger.d("onTabUnselected position:" + tab.getPosition());
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                Logger.d("onTabReselected");
             }
         });
     }

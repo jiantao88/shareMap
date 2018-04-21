@@ -1,5 +1,7 @@
 package com.jt.sharemap.ui.login;
 
+import com.jt.sharemap.ui.IView;
+
 /**
  * <pre>
  *     @author : zhangjiantao
@@ -9,5 +11,10 @@ package com.jt.sharemap.ui.login;
  * </pre>
  */
 public class LoginSmsContract {
+    interface ILoginSmsPresenter{
+        void login();
+    }
+    interface ILoginSmsView extends IView {
 
+    }
 }

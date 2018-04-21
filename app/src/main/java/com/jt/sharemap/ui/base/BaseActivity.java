@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.jt.sharemap.common.Const;
@@ -63,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        } else {
 //            mToolbar.setVisibility(View.GONE);
 //        }
-//        initContent(getLayoutId());
+        initViews();
         mRxEvent = RxEvent.getInstance();
         mSubject = mRxEvent.registerEvent(registerEvent());
         mDisposableObserver = new ReceiveEvent();
@@ -108,13 +106,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void initViews();
 
-    private void initContent(int layoutId) {
-        if (layoutId != 0) {
-            View contentView = LayoutInflater.from(this).inflate(layoutId, mContainerLayout, false);
-            mContainerLayout.addView(contentView);
-            initViews();
-        }
-    }
 
     /**
      * 显示带消息的进度框

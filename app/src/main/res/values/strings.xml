@@ -17,5 +17,7 @@
     <string name="login_sms">短信验证码登录</string>
     <string name="password">密码</string>
     <string name="user_name">用户名</string>
+    <string name="sms">短信验证码</string>
+    <string name="get_sms_code">发送验证码</string>
 
 </resources>
