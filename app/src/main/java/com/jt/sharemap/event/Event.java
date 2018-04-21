@@ -3,7 +3,6 @@ package com.jt.sharemap.event;
 /**
  * <pre>
  *     @author : zhangjiantao
- *     e-mail : zhangjiantao@chehejia.com
  *     time   : 2018/04/18
  *     desc   :
  *     version: 1.0

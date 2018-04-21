@@ -45,4 +45,28 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
 
     protected abstract P createPresenter();
 
+    @Override
+    public void showLoading(String msg) {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showFail(String msg) {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
 }

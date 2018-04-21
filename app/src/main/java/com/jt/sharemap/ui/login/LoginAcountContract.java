@@ -5,7 +5,7 @@ import com.jt.sharemap.ui.IView;
 /**
  * <pre>
  *     @author : zhangjiantao
- *     e-mail : zhangjiantao@chehejia.com
+ *     e-mail : a_tao123@163.com
  *     time   : 2018/04/19
  *     desc   :
  *     version: 1.0

@@ -5,7 +5,6 @@ import com.jt.sharemap.presenter.BasePresenter;
 /**
  * <pre>
  *     @author : zhangjiantao
- *     e-mail : zhangjiantao@chehejia.com
  *     time   : 2018/04/19
  *     desc   :
  *     version: 1.0
