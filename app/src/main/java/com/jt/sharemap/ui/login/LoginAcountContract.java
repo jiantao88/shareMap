@@ -13,10 +13,13 @@ import com.jt.sharemap.ui.IView;
  */
 public interface LoginAcountContract {
     interface ILoginAcountPresenter {
-        void login();
+        void login(String phone,String password);
     }
 
     interface ILoginAcountView extends IView {
-
+        /**
+         * 登录或注册Result
+         */
+        void showResult(String msg);
     }
 }

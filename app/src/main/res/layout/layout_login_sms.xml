@@ -43,6 +43,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/tv_send_sms_code"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="center"

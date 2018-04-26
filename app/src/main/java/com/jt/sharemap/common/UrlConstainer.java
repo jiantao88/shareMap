@@ -4,7 +4,8 @@ package com.jt.sharemap.common;
  * api地址
  */
 public class UrlConstainer {
-    public static final String baseUrl = "http://www.wanandroid.com/";
+    public static final String BASE_URL_DEV = "http://127.0.0.1:3000/";
+    public static final String BASE_URL = "http://fenxiangditu.com/";
     /**
      * 登录
      */
@@ -13,65 +14,35 @@ public class UrlConstainer {
     /**
      * 注册
      */
-    public static final String REGISTER = "user/register";
+    public static final String REGISTER = "user/signup";
 
+    public static final String SMS_CODE = "user/msgCode";
     /**
      * 首页文章列表
      */
-    public static final String HOME_LIST = "article/list/{page}/json";
+    public static final String HOME_LIST = "map/list?";
 
     /**
-     * 首页广告
+     * 地图详情
      */
-    public static final String MAIN_BANNER = "banner/json";
+    public static final String MAP_DETAIL = "map";
+    /**
+     * 照片上传
+     */
+    public static final String PHOTO_UPLOAD="qiniu/token";
 
     /**
-     * 收藏文章
+     * 个人信息上传
      */
-    public static final String COLLECT_ARTICLE = "lg/collect/{id}/json";
+    public static final String USER_UPDATE = "user/update";
 
     /**
-     * 收藏站内文章
+     * 点赞
      */
-    public static final String COLLECT_INSIDE_ARTICLE = "lg/collect/{id}/json";
+    public static final String LIKE = "like";
 
     /**
-     * 取消收藏的文章
+     * 评论
      */
-    public static final String UNCOLLECT_ARTICLE = "lg/uncollect_originId/{id}/json";
-
-    /**
-     * 删除收藏的文章
-     */
-    public static final String DELETE_COLLECT_ARTICLE = "lg/uncollect/{id}/json";
-
-
-    /**
-     * 知识体系
-     */
-    public static final String TREE = "tree/json";
-
-    /**
-     * 知识体系文章列表
-     */
-    public static final String TREE_LIST = "article/list/{page}/json?";
-    /**
-     * 收藏的文章列表
-     */
-    public static final String COLLECT_ARTICLE_LIST = "lg/collect/list/{page}/json";
-
-    /**
-     * 搜索
-     */
-    public static final String SEARCH = "article/query/{page}/json";
-
-    /**
-     * 搜索热词
-     */
-    public static final String HOT_KEYWORD = "/hotkey/json";
-
-    /**
-     * 常用网站
-     */
-    public static final String FRIEND = "friend/json";
+    public static final String COMMENT = "comment";
 }

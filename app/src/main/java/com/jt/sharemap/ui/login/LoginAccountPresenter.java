@@ -1,5 +1,7 @@
 package com.jt.sharemap.ui.login;
 
+import com.jt.sharemap.net.bean.LoginBean;
+import com.jt.sharemap.net.callback.RxObserver;
 import com.jt.sharemap.presenter.BasePresenter;
 
 /**
@@ -11,8 +13,30 @@ import com.jt.sharemap.presenter.BasePresenter;
  * </pre>
  */
 public class LoginAccountPresenter extends BasePresenter<LoginAcountContract.ILoginAcountView> implements LoginAcountContract.ILoginAcountPresenter{
-    @Override
-    public void login() {
+    private String username, password;
+    private LoginModel mLoginModel;
+    private LoginAcountContract.ILoginAcountView mILoginAcountView;
 
+
+    public LoginAccountPresenter() {
+        mLoginModel = new LoginModel();
     }
+
+    @Override
+    public void login(String phone,String password) {
+        mILoginAcountView = getView();
+        mLoginModel.login(phone, password, new RxObserver<LoginBean>(this) {
+            @Override
+            protected void onSuccess(LoginBean data) {
+
+            }
+
+            @Override
+            protected void onFail(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+
 }

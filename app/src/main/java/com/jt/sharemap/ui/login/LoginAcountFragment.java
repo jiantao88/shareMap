@@ -1,10 +1,17 @@
 package com.jt.sharemap.ui.login;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatButton;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 
 import com.jt.sharemap.R;
 import com.jt.sharemap.ui.base.BasePresenterFragment;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * <pre>
@@ -15,7 +22,22 @@ import com.jt.sharemap.ui.base.BasePresenterFragment;
  *     version: 1.0
  * </pre>
  */
-public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPresenter,LoginAcountContract.ILoginAcountView> implements LoginAcountContract.ILoginAcountView{
+public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPresenter, LoginAcountContract.ILoginAcountView> implements LoginAcountContract.ILoginAcountView {
+
+
+    @BindView(R.id.et_username)
+    EditText mEtUsername;
+    @BindView(R.id.text_input_username)
+    TextInputLayout mTextInputUsername;
+    @BindView(R.id.et_password)
+    EditText mEtPassword;
+    @BindView(R.id.text_input_password)
+    TextInputLayout mTextInputPassword;
+    @BindView(R.id.btn_login)
+    AppCompatButton mBtnLogin;
+    @BindView(R.id.btn_register)
+    AppCompatButton mBtnRegister;
+    private String username, password;
 
 
     @Override
@@ -23,15 +45,6 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
         return new LoginAccountPresenter();
     }
 
-    @Override
-    protected void receiveEvent(Object object) {
-
-    }
-
-    @Override
-    protected String registerEvent() {
-        return null;
-    }
 
     @Override
     protected void getBundle(Bundle bundle) {
@@ -41,10 +54,53 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
     @Override
     protected void initViews(View view) {
 
+
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        super.showLoading(msg);
+        showLoadingDialog();
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.layout_login_account;
+    }
+
+
+    @OnClick({R.id.btn_login, R.id.btn_register})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_login:
+                if (verifyAccount()) {
+                    mPresenter.login(username,password);
+                }
+                break;
+            case R.id.btn_register:
+
+                break;
+
+            default:
+        }
+    }
+
+    private boolean verifyAccount() {
+        username = mEtUsername.getText().toString().trim();
+        password = mEtPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(username)) {
+            mEtUsername.setError("请填写用户名");
+            return false;
+        }
+        if (TextUtils.isEmpty(password)) {
+            mEtPassword.setError("请填写密码");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void showResult(String msg) {
+
     }
 }

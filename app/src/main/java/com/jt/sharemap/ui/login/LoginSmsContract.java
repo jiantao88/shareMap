@@ -12,9 +12,12 @@ import com.jt.sharemap.ui.IView;
  */
 public class LoginSmsContract {
     interface ILoginSmsPresenter{
-        void login();
+        void login(String phone,String smsCode);
+
+        void getSmSCode(String phone);
     }
     interface ILoginSmsView extends IView {
+        void getSmeCodeSuccess();
 
     }
 }

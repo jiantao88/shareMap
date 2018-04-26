@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.jt.sharemap.net.api.ApiServer;
+import com.jt.sharemap.net.interceptor.LogInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,6 +36,8 @@ public class RxRetrofit {
                 .readTimeout(10, TimeUnit.SECONDS)
                 //缓存
                 .cache(new Cache(context.getExternalFilesDir("http_cache"), 10 << 20))
+                .addInterceptor(new LogInterceptor())
+                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
                 //添加Cookie拦截器
                 .build();
 

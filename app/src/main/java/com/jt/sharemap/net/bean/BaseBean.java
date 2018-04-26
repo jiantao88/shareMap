@@ -8,28 +8,28 @@ public class BaseBean<T> {
     /**
      * 服务器返回的错误码
      */
-    public int errorCode;
+    public int status;
     /**
      * 服务器返回的成功或失败的提示
      */
-    public String errorMsg;
+    public String error;
     /**
      * 服务器返回的数据
      */
-    public T data;
+    public T result;
 
-    public BaseBean(int errorCode, String errorMsg, T data) {
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
-        this.data = data;
+    public BaseBean(int errorCode, String error, T data) {
+        this.status = errorCode;
+        this.error = error;
+        this.result = data;
     }
 
     @Override
     public String toString() {
         return "BaseBean{" +
-                "errorCode=" + errorCode +
-                ", errorMsg='" + errorMsg + '\'' +
-                ", data=" + data +
+                "status=" + status +
+                ", error='" + error + '\'' +
+                ", result=" + result +
                 '}';
     }
 }

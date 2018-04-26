@@ -18,11 +18,11 @@ public abstract class RxObserver<T> extends RxBaseObserver<T> {
     public void onNext(BaseBean<T> mBaseBean) {
 
         //请求成功
-        if (mBaseBean.errorCode == NetConfig.REQUEST_SUCCESS) {
-            onSuccess(mBaseBean.data);
+        if (mBaseBean.status == NetConfig.REQUEST_SUCCESS) {
+            onSuccess(mBaseBean.result);
         } else {
             //失败
-            onFail(mBaseBean.errorCode, mBaseBean.errorMsg);
+            onFail(mBaseBean.status, mBaseBean.error);
         }
     }
 

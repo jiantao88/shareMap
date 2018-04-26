@@ -25,6 +25,7 @@ public class BaseApplication extends Application {
             return;
         }
         LeakCanary.install(this);
+        AppContext.initialize(this);
 
     }
 

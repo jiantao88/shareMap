@@ -46,6 +46,16 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
     protected abstract P createPresenter();
 
     @Override
+    protected void receiveEvent(Object object) {
+
+    }
+
+    @Override
+    protected String registerEvent() {
+        return null;
+    }
+
+    @Override
     public void showLoading(String msg) {
 
     }

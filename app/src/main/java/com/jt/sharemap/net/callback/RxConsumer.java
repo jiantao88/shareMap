@@ -16,10 +16,10 @@ public abstract class RxConsumer<T> implements Consumer<BaseBean<T>> {
 
     @Override
     public void accept(@NonNull BaseBean<T> tBaseBean) throws Exception {
-        if (tBaseBean.errorCode == NetConfig.REQUEST_SUCCESS){
-            onSuccess(tBaseBean.data);
+        if (tBaseBean.status == NetConfig.REQUEST_SUCCESS){
+            onSuccess(tBaseBean.result);
         }else {
-            onFail(tBaseBean.errorMsg);
+            onFail(tBaseBean.error);
         }
     }
 

@@ -19,5 +19,6 @@
     <string name="user_name">用户名</string>
     <string name="sms">短信验证码</string>
     <string name="get_sms_code">发送验证码</string>
+    <string name="error_phone">请填写正确的手机格式</string>
 
 </resources>

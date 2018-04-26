@@ -17,7 +17,7 @@ public abstract class RxFunction<T, R> implements Function<BaseBean<T>, Observab
 
     @Override
     public Observable<BaseBean<R>> apply(BaseBean<T> tBaseBean) throws Exception {
-        if (tBaseBean.errorCode == NetConfig.REQUEST_SUCCESS){
+        if (tBaseBean.status == NetConfig.REQUEST_SUCCESS){
             return doOnNextRequest();
         }
         return null;
