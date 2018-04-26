@@ -40,6 +40,8 @@
     <dimen name="dp_5">5dp</dimen>
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_7">7dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+
 
     <dimen name="dp_0_5">0.5dp</dimen>
     <dimen name="dp_1">1dp</dimen>
@@ -47,5 +49,5 @@
     <dimen name="dp_1_5">1.5dp</dimen>
 
     <dimen name="appoint_corners_radius">5dp</dimen>
-
+    <dimen name="toolbar_height">48dp</dimen>
 </resources>

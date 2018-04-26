@@ -61,4 +61,7 @@ public class Const {
         public static final int SEARCH = 3;
     }
 
+    public static final boolean IS_PRINT_LOG_TO_FILE = false;
+
+
 }
