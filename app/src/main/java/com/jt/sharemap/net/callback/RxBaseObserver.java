@@ -49,7 +49,7 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
          * 处理异常
          */
         hideLoading();
-        dealException(AppContext.getContext(), e);
+        dealException(AppContext.getInstance().getContext(), e);
     }
 
     @Override

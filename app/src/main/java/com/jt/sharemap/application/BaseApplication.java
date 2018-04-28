@@ -2,6 +2,7 @@ package com.jt.sharemap.application;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;

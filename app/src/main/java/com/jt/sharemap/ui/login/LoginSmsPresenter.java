@@ -1,5 +1,6 @@
 package com.jt.sharemap.ui.login;
 
+import com.jt.sharemap.net.bean.LoginBean;
 import com.jt.sharemap.net.bean.SmsCodeBean;
 import com.jt.sharemap.net.callback.RxObserver;
 import com.jt.sharemap.presenter.BasePresenter;
@@ -22,7 +23,21 @@ public class LoginSmsPresenter extends BasePresenter<LoginSmsContract.ILoginSmsV
 
     @Override
     public void login(String phone,String smsCode) {
+        mILoginSmsView = getView();
+        mILoginSmsView.showLoading("正在登录");
+        mLoginModel.login_sms(phone, smsCode, new RxObserver<LoginBean>(this) {
+            @Override
+            protected void onSuccess(LoginBean data) {
+                mILoginSmsView.hideLoading();
+                mILoginSmsView.LoginSuccess();
+            }
 
+            @Override
+            protected void onFail(int errorCode, String errorMsg) {
+                mILoginSmsView.hideLoading();
+                mILoginSmsView.showFail(errorMsg);
+            }
+        });
     }
 
     @Override
@@ -31,7 +46,7 @@ public class LoginSmsPresenter extends BasePresenter<LoginSmsContract.ILoginSmsV
         mLoginModel.getSmsCode(phone, new RxObserver<SmsCodeBean>(this) {
             @Override
             protected void onSuccess(SmsCodeBean data) {
-                mILoginSmsView.getSmeCodeSuccess();
+                getView().getSmeCodeSuccess();
             }
 
             @Override

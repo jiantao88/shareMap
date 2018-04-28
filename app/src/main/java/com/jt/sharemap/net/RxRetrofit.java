@@ -2,6 +2,7 @@ package com.jt.sharemap.net;
 
 import android.content.Context;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.jt.sharemap.net.api.ApiServer;
 import com.jt.sharemap.net.interceptor.LogInterceptor;
@@ -38,7 +39,7 @@ public class RxRetrofit {
                 .cache(new Cache(context.getExternalFilesDir("http_cache"), 10 << 20))
                 .addInterceptor(new LogInterceptor())
                 .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
-                //添加Cookie拦截器
+                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
         retrofit = new Retrofit.Builder()

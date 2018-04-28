@@ -19,5 +19,7 @@ public class LoginSmsContract {
     interface ILoginSmsView extends IView {
         void getSmeCodeSuccess();
 
+        void LoginSuccess();
+
     }
 }

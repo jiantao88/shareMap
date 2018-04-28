@@ -4,23 +4,20 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jt.sharemap.R;
 import com.jt.sharemap.ui.base.BasePresenterFragment;
+import com.jt.sharemap.utils.ToastUtils;
 import com.jt.sharemap.utils.ValidateUtil;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -49,7 +46,6 @@ public class LoginSmsFragment extends BasePresenterFragment<LoginSmsPresenter, L
     AppCompatButton mBtnLogin;
     @BindView(R.id.tv_send_sms_code)
     TextView mTvSendSmsCode;
-    Unbinder unbinder;
 
     private String phone, smsCode;
 
@@ -74,32 +70,7 @@ public class LoginSmsFragment extends BasePresenterFragment<LoginSmsPresenter, L
     }
 
     @Override
-    protected void initViews(View view) {
-//        mEtPhone = view.findViewById(R.id.et_phone);
-//        if (!TextUtils.isEmpty(phone) && ValidateUtil.isPhoneNumber(phone)) {
-//
-//            Observable<Long> mObservableCountTime = RxView.clicks(mTvSendSmsCode)
-//                    //防止重复点击
-//                    .throttleFirst(MAX_COUNT_TIME, TimeUnit.SECONDS)
-//                    //将点击事件转换成倒计时事件
-//                    .flatMap(new Function<Object, ObservableSource<Long>>() {
-//                        @Override
-//                        public ObservableSource<Long> apply(Object o) throws Exception {
-//                            //更新发送按钮的状态并初始化显现倒计时文字
-//
-////                            RxTextView.text(mTvSendSmsCode).accept("剩余 " + MAX_COUNT_TIME + " 秒");
-//
-//                            //在实际操作中可以在此发送获取网络的请求
-//                            mPresenter.getSmSCode(phone);
-//                            //返回 N 秒内的倒计时观察者对象。
-//                            return Observable.interval(1, TimeUnit.SECONDS, Schedulers.io()).take(MAX_COUNT_TIME);
-//                        }
-//                    });
-//
-//        } else {
-//            mEtPhone.setError(getString(R.string.error_phone));
-//        }
-
+    protected void initViews() {
     }
 
     @Override
@@ -120,6 +91,17 @@ public class LoginSmsFragment extends BasePresenterFragment<LoginSmsPresenter, L
                 }
                 break;
             case R.id.btn_login:
+                smsCode = mEtSms.getText().toString().trim();
+                phone = mEtPhone.getText().toString().trim();
+                if (!TextUtils.isEmpty(phone) && ValidateUtil.isPhoneNumber(phone)) {
+                    if (!TextUtils.isEmpty(smsCode)){
+                        mPresenter.login(phone,smsCode);
+                    }else {
+                        mEtSms.setError(getString(R.string.error_sms));
+                    }
+                }else {
+                    mEtPhone.setError(getString(R.string.error_phone));
+                }
                 break;
 
             default:
@@ -139,20 +121,8 @@ public class LoginSmsFragment extends BasePresenterFragment<LoginSmsPresenter, L
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-
-        return rootView;
+    public void LoginSuccess() {
+        ToastUtils.showToast(getContext(),"登录成功");
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @OnClick(R.id.text_input_phone)
-    public void onViewClicked() {
-    }
 }

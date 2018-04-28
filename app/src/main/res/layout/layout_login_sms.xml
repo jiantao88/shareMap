@@ -15,7 +15,8 @@
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/user_name"
+            android:hint="@string/phone_num"
+            android:inputType="phone"
             android:textColorHint="@color/_0091ea"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -37,6 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/sms"
+                android:maxLength="4"
+                android:inputType="numberDecimal"
                 android:textColorHint="@color/_0091ea"/>
 
 

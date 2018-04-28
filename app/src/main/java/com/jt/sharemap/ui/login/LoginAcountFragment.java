@@ -52,7 +52,7 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
     }
 
     @Override
-    protected void initViews(View view) {
+    protected void initViews() {
 
 
     }
