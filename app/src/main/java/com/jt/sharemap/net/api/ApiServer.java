@@ -33,7 +33,7 @@ public interface ApiServer {
      */
     @FormUrlEncoded
     @POST(UrlConstainer.LOGIN)
-    Observable<BaseBean<LoginBean>> login(@Field("username") String username, @Field("password") String password, @Field("loginType") String loginType);
+    Observable<BaseBean<LoginBean>> login(@Field("phone") String username, @Field("password") String password, @Field("loginType") String loginType);
 
     /**
      * 登录 短信
@@ -45,7 +45,7 @@ public interface ApiServer {
      */
     @FormUrlEncoded
     @POST(UrlConstainer.LOGIN)
-    Observable<BaseBean<LoginBean>> login_SMS(@Field("username") String username, @Field("msgCode") String msgCode, @Field("loginType") String loginType);
+    Observable<BaseBean<LoginBean>> login_SMS(@Field("phone") String username, @Field("msgCode") String msgCode, @Field("loginType") String loginType);
 
     /**
      * 注册

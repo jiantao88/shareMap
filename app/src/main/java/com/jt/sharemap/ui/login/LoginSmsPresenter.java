@@ -1,5 +1,6 @@
 package com.jt.sharemap.ui.login;
 
+import com.jt.sharemap.manager.UserInfoManger;
 import com.jt.sharemap.net.bean.LoginBean;
 import com.jt.sharemap.net.bean.SmsCodeBean;
 import com.jt.sharemap.net.callback.RxObserver;
@@ -28,8 +29,11 @@ public class LoginSmsPresenter extends BasePresenter<LoginSmsContract.ILoginSmsV
         mLoginModel.login_sms(phone, smsCode, new RxObserver<LoginBean>(this) {
             @Override
             protected void onSuccess(LoginBean data) {
+                UserInfoManger.saveUserInfo(data);
+                UserInfoManger.saveIsLogin(true);
                 mILoginSmsView.hideLoading();
                 mILoginSmsView.LoginSuccess();
+
             }
 
             @Override

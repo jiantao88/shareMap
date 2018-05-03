@@ -53,8 +53,6 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
 
     @Override
     protected void initViews() {
-
-
     }
 
     @Override
@@ -85,6 +83,11 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
         }
     }
 
+    @Override
+    public void LoginSuccess() {
+
+    }
+
     private boolean verifyAccount() {
         username = mEtUsername.getText().toString().trim();
         password = mEtPassword.getText().toString().trim();
@@ -97,10 +100,5 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void showResult(String msg) {
-
     }
 }

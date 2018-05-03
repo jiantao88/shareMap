@@ -17,9 +17,7 @@ public interface LoginAcountContract {
     }
 
     interface ILoginAcountView extends IView {
-        /**
-         * 登录或注册Result
-         */
-        void showResult(String msg);
+
+        void LoginSuccess();
     }
 }
