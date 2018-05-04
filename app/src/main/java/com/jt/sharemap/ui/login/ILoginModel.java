@@ -12,7 +12,7 @@ import com.jt.sharemap.net.callback.RxObserver;
  *     version: 1.0
  * </pre>
  */
-public interface ILoginModel{
+public interface ILoginModel {
 
     /**
      * 登录
@@ -20,28 +20,29 @@ public interface ILoginModel{
      * @param username 用户名
      * @param password 密码
      */
-    void login(String username, String password,RxObserver<LoginBean> callback);
+    void login(String username, String password, RxObserver<LoginBean> callback);
 
-/**
+    /**
      * 登录 sms
      *
      * @param username 用户名
      * @param sms_code 密码
      */
-    void login_sms(String username, String sms_code,RxObserver<LoginBean> callback);
+    void login_sms(String username, String sms_code, RxObserver<LoginBean> callback);
 
 
     /**
      * 注册
      *
-     * @param username   用户名
-     * @param password   密码
+     * @param phone    用户名
+     * @param password 密码
      */
-    void register(String username, String password,RxObserver<String> callback);
+    void register(String phone, String sms_code,String password, RxObserver<String> callback);
 
     /**
      * 获取短信验证码
+     *
      * @param phone
      */
-    void getSmsCode(String phone,RxObserver<SmsCodeBean> callback);
+    void getSmsCode(String phone, RxObserver<SmsCodeBean> callback);
 }

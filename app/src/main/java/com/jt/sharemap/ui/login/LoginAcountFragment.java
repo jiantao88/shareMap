@@ -1,5 +1,6 @@
 package com.jt.sharemap.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 import com.jt.sharemap.R;
 import com.jt.sharemap.ui.base.BasePresenterFragment;
+import com.jt.sharemap.ui.register.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -76,7 +78,8 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
                 }
                 break;
             case R.id.btn_register:
-
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intent);
                 break;
 
             default:
@@ -85,7 +88,7 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
 
     @Override
     public void LoginSuccess() {
-
+        getActivity().finish();
     }
 
     private boolean verifyAccount() {

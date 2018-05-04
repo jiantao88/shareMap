@@ -9,12 +9,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.jt.sharemap.R;
-import com.jt.sharemap.common.Const;
-import com.jt.sharemap.event.Event;
-import com.jt.sharemap.event.RxEvent;
+import com.jt.sharemap.presenter.BasePresenter;
 import com.jt.sharemap.ui.base.BasePresenterActivity;
 import com.jt.sharemap.utils.KeyBoardUtil;
-import com.jt.sharemap.utils.ToastUtils;
 
 import java.util.Objects;
 
@@ -23,7 +20,7 @@ import butterknife.BindView;
 /**
  * @author zhangjiantao
  */
-public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginContract.ILoginRegisterView> implements LoginContract.ILoginRegisterView {
+public class LoginActivity extends BasePresenterActivity {
 
 
     @BindView(R.id.layout_tab_login)
@@ -38,19 +35,6 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
 
     public static final String FRAGMENT_TAG_ACCOUNT = "accountfragment";
     public static final String FRAGMENT_TAG_SMS = "smsfragment";
-
-
-    @Override
-    protected LoginPresenter createPresenter() {
-        return new LoginPresenter();
-    }
-
-    @Override
-    public void showResult(String msg) {
-        ToastUtils.showToast(this, msg);
-        RxEvent.getInstance().postEvent(Const.EVENT_ACTION.REFRESH_DATA, new Event(Event.Type.LIST, null));
-        finish();
-    }
 
     @Override
     public void showError() {
@@ -112,6 +96,11 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }
 

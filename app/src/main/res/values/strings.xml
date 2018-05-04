@@ -16,11 +16,16 @@
     <string name="login_account">账号登录</string>
     <string name="login_sms">短信验证码登录</string>
     <string name="password">密码</string>
+    <string name="repassword">重复密码</string>
     <string name="user_name">用户名</string>
     <string name="sms">短信验证码</string>
     <string name="get_sms_code">发送验证码</string>
     <string name="phone_num">手机号</string>
 
+    <string name="empty_phone">请填写手机号</string>
     <string name="error_phone">请填写正确的手机格式</string>
     <string name="error_sms">请输入验证码</string>
+    <string name="empty_password">请填写密码</string>
+    <string name="error_repassword">密码不相同</string>
+    <string name="empty_sms_code"></string>
 </resources>
