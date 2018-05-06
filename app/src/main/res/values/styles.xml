@@ -43,4 +43,14 @@
         <!--<item name="android:selectableItemBackground">@drawable/menu_bg_selector</item>-->
     </style>
 
+    //定义ProgressBar大小
+
+    <style name="LoadingProgressStyle" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:minWidth">20dp</item>
+        <item name="android:maxWidth">20dp</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxHeight">20dp</item>
+    </style>
+
+
 </resources>

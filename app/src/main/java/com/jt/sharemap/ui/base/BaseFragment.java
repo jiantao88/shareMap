@@ -94,10 +94,10 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mUnbinder = ButterKnife.bind(this, view);
-        initViews();
+        initViews(view);
     }
 
-    protected abstract void initViews();
+    protected abstract void initViews(View view);
 
     protected abstract int getLayoutId();
 

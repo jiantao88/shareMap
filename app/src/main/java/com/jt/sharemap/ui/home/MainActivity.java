@@ -1,10 +1,29 @@
 package com.jt.sharemap.ui.home;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.widget.FrameLayout;
 
+import com.jt.sharemap.R;
 import com.jt.sharemap.ui.base.BaseActivity;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.container)
+    FrameLayout mContainer;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+    @BindView(R.id.nav_view)
+    NavigationView mNavView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
     @Override
     protected void receiveEvent(Object object) {
 
@@ -17,8 +36,15 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.activity_main;
     }
+
+    private void initFragments() {
+        Fragment homeFragment = new HomeFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.container,homeFragment ).show(homeFragment).commitAllowingStateLoss();
+    }
+
 
     @Override
     protected boolean initToolbar() {
@@ -32,6 +58,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        initFragments();
     }
 }

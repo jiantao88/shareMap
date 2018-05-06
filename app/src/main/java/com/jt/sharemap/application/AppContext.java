@@ -17,7 +17,7 @@ public class AppContext {
         mContext = mCon;
     }
 
-    public Context getContext() {
+    public static Context getContext() {
         return mContext;
     }
 

@@ -20,7 +20,7 @@ public class UrlConstainer {
     /**
      * 首页文章列表
      */
-    public static final String HOME_LIST = "map/list?";
+    public static final String HOME_LIST = "map/list";
 
     /**
      * 地图详情

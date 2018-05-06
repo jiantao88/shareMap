@@ -10,12 +10,14 @@ import com.jt.sharemap.net.bean.MapDetailBean;
 import com.jt.sharemap.net.bean.SmsCodeBean;
 import com.jt.sharemap.net.bean.UserBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @author zhangjiantao
@@ -74,7 +76,7 @@ public interface ApiServer {
      * 首页 列表
      */
     @GET(UrlConstainer.HOME_LIST)
-    Observable<HomeBean> getHomeList(@Path("pageSize") int pageSize);
+    Observable<BaseBean<List<HomeBean>>> getHomeList(@Query("pageSize") int pageSize);
 
     /**
      * 地图详情
@@ -83,7 +85,7 @@ public interface ApiServer {
      * @return
      */
     @GET(UrlConstainer.MAP_DETAIL)
-    Observable<MapDetailBean> getMapDetail(@Path("mapId") String mapId);
+    Observable<MapDetailBean> getMapDetail(@Query("mapId") String mapId);
 
     /**
      * 个人信息上传

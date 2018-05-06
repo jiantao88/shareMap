@@ -20,15 +20,19 @@ import javax.crypto.spec.SecretKeySpec;
  * </pre>
  */
 public class UserInfoManger {
+    public static LoginBean loginBean;
+
+
     public static LoginBean getUserInfo() {
-        LoginBean LoginBean = null;
-        SecretKeySpec keySpec = getAesKey();
-        String userInfo = AesEncryptionUtils.decrypt(keySpec, (String) PreUtils.get(Const.USERINFO_KEY.USER_INFO, ""));
-        if (TextUtils.isEmpty(userInfo)) {
-            return null;
+        if (loginBean==null){
+            SecretKeySpec keySpec = getAesKey();
+            String userInfo = AesEncryptionUtils.decrypt(keySpec, (String) PreUtils.get(Const.USERINFO_KEY.USER_INFO, ""));
+            if (TextUtils.isEmpty(userInfo)) {
+                return null;
+            }
+            loginBean = new Gson().fromJson(userInfo, LoginBean.class);
         }
-        LoginBean = new Gson().fromJson(userInfo, LoginBean.class);
-        return LoginBean;
+        return loginBean;
     }
 
     public static void saveUserInfo(LoginBean LoginBean) {

@@ -27,5 +27,8 @@
     <string name="error_sms">请输入验证码</string>
     <string name="empty_password">请填写密码</string>
     <string name="error_repassword">密码不相同</string>
-    <string name="empty_sms_code"></string>
+    <string name="empty_sms_code">请填写验证码</string>
+    <string name="error_loading">加载失败,点击重新加载</string>
+    <string name="loading_more">加载更多</string>
+    <string name="no_more_date">没有更多数据了</string>
 </resources>

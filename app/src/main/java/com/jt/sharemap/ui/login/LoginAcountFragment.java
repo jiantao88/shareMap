@@ -54,13 +54,19 @@ public class LoginAcountFragment extends BasePresenterFragment<LoginAccountPrese
     }
 
     @Override
-    protected void initViews() {
+    protected void initViews(View view) {
     }
 
     @Override
     public void showLoading(String msg) {
         super.showLoading(msg);
         showLoadingDialog();
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        hideLoadingDialog();
     }
 
     @Override

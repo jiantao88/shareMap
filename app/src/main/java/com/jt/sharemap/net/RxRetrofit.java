@@ -5,8 +5,10 @@ import android.content.Context;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.jt.sharemap.net.api.ApiServer;
+import com.jt.sharemap.net.interceptor.HeaderInterceptor;
 import com.jt.sharemap.net.interceptor.LogInterceptor;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -36,8 +38,9 @@ public class RxRetrofit {
                 //读取超时
                 .readTimeout(10, TimeUnit.SECONDS)
                 //缓存
-                .cache(new Cache(context.getExternalFilesDir("http_cache"), 10 << 20))
+                .cache(new Cache(Objects.requireNonNull(context.getExternalFilesDir("http_cache")), 10 << 20))
                 .addInterceptor(new LogInterceptor())
+                .addNetworkInterceptor(new HeaderInterceptor())
                 .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();

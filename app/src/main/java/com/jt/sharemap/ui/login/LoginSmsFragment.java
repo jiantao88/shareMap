@@ -70,7 +70,7 @@ public class LoginSmsFragment extends BasePresenterFragment<LoginSmsPresenter, L
     }
 
     @Override
-    protected void initViews() {
+    protected void initViews(View view) {
     }
 
     @Override
