@@ -52,5 +52,14 @@
         <item name="android:maxHeight">20dp</item>
     </style>
 
+    <style name="fabButtonStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="android:clickable">true</item>
+        <item name="borderWidth">0dp</item>
+        <item name="pressedTranslationZ">@dimen/dp_12</item>
+        <item name="rippleColor">#a6a6a6</item>
+    </style>
+
 
 </resources>

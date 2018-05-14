@@ -52,7 +52,7 @@ public class HomeFragment extends BaseAbListFragment<HomePresenrer, HomeContract
     }
 
     @Override
-    public void OnItemClick(int item_id) {
-        ToastUtils.showToast(getContext(), item_id + "");
+    public void OnItemClick(String itemId) {
+        ToastUtils.showToast(getContext(), itemId);
     }
 }

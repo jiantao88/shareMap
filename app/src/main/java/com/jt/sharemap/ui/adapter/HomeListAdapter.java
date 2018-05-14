@@ -1,5 +1,6 @@
 package com.jt.sharemap.ui.adapter;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class HomeListAdapter extends BaseListAdapter<HomeBean> {
     }
 
     @Override
-    public void bindDatas(ListDataHolder holder, HomeBean bean, int itemType, int position) {
+    public void bindDatas(ListDataHolder holder, final HomeBean bean, int itemType, int position) {
         TextView title = holder.getView(R.id.tv_home_item_title);
         TextView des = holder.getView(R.id.tv_home_item_des);
         ImageView iv_bg = holder.getView(R.id.iv_home_item_bg);
@@ -38,9 +39,15 @@ public class HomeListAdapter extends BaseListAdapter<HomeBean> {
         title.setText(bean.getTitle());
         des.setText(bean.getDescription());
         GlideLoaderManager.loadImage(bean.getCoverImg(), iv_bg, Const.IMAGE_LOADER.NOMAL_IMG);
+        iv_bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnHomeListItemClickListener.OnItemClick(bean.get_id());
+            }
+        });
     }
 
     public interface OnHomeListItemClickListener {
-        void OnItemClick(int item_id);
+        void OnItemClick(String item_id);
     }
 }

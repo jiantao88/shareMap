@@ -17,8 +17,10 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.container)
     FrameLayout mContainer;
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
+    @BindView(R.id.fab_1)
+    FloatingActionButton mFab_1;
+    @BindView(R.id.fab_2)
+    FloatingActionButton mFab_2;
     @BindView(R.id.nav_view)
     NavigationView mNavView;
     @BindView(R.id.drawer_layout)

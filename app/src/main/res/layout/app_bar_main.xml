@@ -8,13 +8,33 @@
     tools:context=".ui.home.MainActivity">
 
     <include layout="@layout/content_main"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.jt.sharemap.ui.widget.FloatingActionMenu
+        android:id="@+id/fab_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        android:layout_gravity="bottom|end">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_3"
+            style="@style/fabButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera"/>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_2"
+            style="@style/fabButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_1"
+            style="@style/fabButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_add_white"/>
+    </com.jt.sharemap.ui.widget.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>
