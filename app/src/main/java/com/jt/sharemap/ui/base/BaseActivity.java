@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 
+import com.jt.sharemap.R;
 import com.jt.sharemap.common.Const;
 import com.jt.sharemap.event.RxEvent;
 
-import butterknife.ButterKnife;
+import java.util.Objects;
+
 import butterknife.Unbinder;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.subjects.PublishSubject;
@@ -31,7 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     private RxEvent mRxEvent;
     private PublishSubject mSubject;
     private DisposableObserver mDisposableObserver;
-    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,24 +46,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (intent != null) {
             getIntent(intent);
         }
-        setContentView(getLayoutId());
-        mUnbinder=ButterKnife.bind(this);
-
-//        mToolbar = findViewById(R.id.toolbar);
-//        mContainerLayout = findViewById(R.id.frameLayout);
-//        boolean isToolbar = initToolbar();
-//        if (isToolbar) {
-//            setSupportActionBar(mToolbar);
-//            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-//            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    onNavigationClick();
-//                }
-//            });
-//        } else {
-//            mToolbar.setVisibility(View.GONE);
-//        }
+        setContentView(R.layout.content_main);
+        mToolbar = findViewById(R.id.toolbar);
+        mContainerLayout = findViewById(R.id.container);
+        boolean isToolbar = initToolbar();
+        if (isToolbar) {
+            setSupportActionBar(mToolbar);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onNavigationClick();
+                }
+            });
+        } else {
+            mToolbar.setVisibility(View.GONE);
+        }
+        //初始化Content
+        initContent(getLayoutId());
         initViews();
         mRxEvent = RxEvent.getInstance();
         mSubject = mRxEvent.registerEvent(registerEvent());
@@ -72,7 +75,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         RxEvent.getInstance().unRegisterEvent(registerEvent(), mSubject, mDisposableObserver);
-        mUnbinder.unbind();
     }
 
     private class ReceiveEvent extends DisposableObserver {
@@ -107,6 +109,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initViews();
 
 
+    private void initContent(int layoutId) {
+        if (layoutId != 0) {
+            View contentView = LayoutInflater.from(this).inflate(layoutId, mContainerLayout, false);
+            mContainerLayout.addView(contentView);
+            initViews();
+        }
+    }
     /**
      * 显示带消息的进度框
      *

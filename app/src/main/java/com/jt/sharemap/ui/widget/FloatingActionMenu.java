@@ -2,7 +2,6 @@ package com.jt.sharemap.ui.widget;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
@@ -16,6 +15,8 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
+
+import com.jt.sharemap.R;
 
 /**
  * <pre>
@@ -90,7 +91,7 @@ public class FloatingActionMenu extends FrameLayout implements View.OnClickListe
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER;
         mCover.setLayoutParams(layoutParams);
-        mCover.setBackgroundColor(Color.WHITE);//设置背景颜色为白色
+        mCover.setBackgroundColor(getResources().getColor(R.color.fmenu));//设置背景颜色为白色
         mCover.setOnClickListener(mOnCoverClickListener);//设置监听，当用户点击背景时, 让FloatingActionMenu收缩
         mCover.setAlpha(0f);//初始化时是全透明
     }

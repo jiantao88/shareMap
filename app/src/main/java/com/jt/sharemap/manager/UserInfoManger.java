@@ -20,7 +20,8 @@ import javax.crypto.spec.SecretKeySpec;
  * </pre>
  */
 public class UserInfoManger {
-    public static LoginBean loginBean;
+    private static LoginBean loginBean;
+    private static String userId;
 
 
     public static LoginBean getUserInfo() {
@@ -31,12 +32,18 @@ public class UserInfoManger {
                 return null;
             }
             loginBean = new Gson().fromJson(userInfo, LoginBean.class);
+            userId = loginBean.getUserId();
         }
         return loginBean;
     }
 
-    public static void saveUserInfo(LoginBean LoginBean) {
-        String userInfo = new Gson().toJson(LoginBean);
+    public static String getUserId() {
+        return userId;
+    }
+
+    public static void saveUserInfo(LoginBean loginbean) {
+        userId = loginbean.getUserId();
+        String userInfo = new Gson().toJson(loginbean);
         SecretKeySpec key = AesEncryptionUtils.createKey();
         String aesContent = AesEncryptionUtils.encrypt(key, userInfo);
         PreUtils.put(Const.USERINFO_KEY.USER_INFO, aesContent);

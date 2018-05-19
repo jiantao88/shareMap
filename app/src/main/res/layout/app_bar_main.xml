@@ -7,7 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivity">
 
-    <include layout="@layout/content_main"/>
+    <FrameLayout
+        android:id="@+id/fb_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <com.jt.sharemap.ui.widget.FloatingActionMenu
         android:id="@+id/fab_menu"
         android:layout_width="wrap_content"

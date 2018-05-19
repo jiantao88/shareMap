@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import com.jt.sharemap.manager.UserInfoManger;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -28,9 +27,9 @@ public class HeaderInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request originalRequest = chain.request();
         Headers.Builder headers = originalRequest.headers().newBuilder();
-        String userid = Objects.requireNonNull(UserInfoManger.getUserInfo().getUserId());
-        if (!TextUtils.isEmpty(userid)){
-            headers.add(X_USER_ID,userid);
+        String userid = UserInfoManger.getUserId();
+        if (!TextUtils.isEmpty(userid)) {
+            headers.add(X_USER_ID, userid);
         }
 
         Request newRequest = chain.request().newBuilder()

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShareMap</string>
+    <string name="app_name">人人地图</string>
 
     <string name="tip_no_data">没有数据哦</string>
     <string name="tip_load_data">数据加载中&#8230;</string>
