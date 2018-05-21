@@ -15,7 +15,7 @@ import com.jt.sharemap.common.Const;
 public class GlideLoaderManager {
     private static RequestOptions nomal_image_options = RequestOptions.placeholderOf(R.drawable.iv_img_default)
             .centerCrop();
-    private static RequestOptions head_options = RequestOptions.placeholderOf(R.mipmap.ic_launcher_round);
+    private static RequestOptions head_options = RequestOptions.placeholderOf(R.mipmap.ic_launcher);
 
     public static void loadImage(String url, final ImageView imageView, int type) {
 

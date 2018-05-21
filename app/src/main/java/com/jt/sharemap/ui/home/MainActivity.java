@@ -2,16 +2,18 @@ package com.jt.sharemap.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.jt.sharemap.R;
 import com.jt.sharemap.ui.base.BaseActivity;
-import com.jt.sharemap.ui.widget.FloatingActionMenu;
+import com.jt.sharemap.ui.widget.FabTagLayout;
+import com.jt.sharemap.ui.widget.FloatingActionButtonPlus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,17 +21,15 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.fab_1)
-    FloatingActionButton mFab_1;
-    @BindView(R.id.fab_2)
-    FloatingActionButton mFab_2;
+    FabTagLayout mFab_1;
     @BindView(R.id.nav_view)
     NavigationView mNavView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-    @BindView(R.id.fab_3)
-    FloatingActionButton mFab3;
+    @BindView(R.id.fab_2)
+    FabTagLayout mFab2;
     @BindView(R.id.fab_menu)
-    FloatingActionMenu mFabMenu;
+    FloatingActionButtonPlus mFabMenu;
 
     @Override
     protected void receiveEvent(Object object) {
@@ -58,6 +58,24 @@ public class MainActivity extends BaseActivity {
         mToolbar.setTitle(R.string.app_name);
         mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu_setting,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    //Menu点击事件
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_search:
+                startActivity(new Intent(this, SearchActivity.class));
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

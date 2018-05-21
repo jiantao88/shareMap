@@ -12,33 +12,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.jt.sharemap.ui.widget.FloatingActionMenu
+    <com.jt.sharemap.ui.widget.FloatingActionButtonPlus
         android:id="@+id/fab_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end">
+        android:layout_gravity="bottom|end"
+        app:layout_behavior="com.jt.sharemap.ui.widget.FabBehavior"
+        app:mBackgroundColor="#87000000"
+        app:switchFabColor="@color/colorPrimary"
+        app:switchFabIcon="@drawable/ic_add_white">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_3"
-            style="@style/fabButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera"/>
-
-
-        <android.support.design.widget.FloatingActionButton
+        <com.jt.sharemap.ui.widget.FabTagLayout
             android:id="@+id/fab_2"
-            style="@style/fabButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera"/>
+            app:tagText="地图集">
+            <android.support.design.widget.FloatingActionButton
 
-        <android.support.design.widget.FloatingActionButton
+                style="@style/fabButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/im_photo"
+                app:fabSize="mini"/>
+
+        </com.jt.sharemap.ui.widget.FabTagLayout>
+        <com.jt.sharemap.ui.widget.FabTagLayout
             android:id="@+id/fab_1"
-            style="@style/fabButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_add_white"/>
-    </com.jt.sharemap.ui.widget.FloatingActionMenu>
+            app:tagText="地点">
+            <android.support.design.widget.FloatingActionButton
+                style="@style/fabButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_draft_tip_icon"
+                app:fabSize="mini"/>
+        </com.jt.sharemap.ui.widget.FabTagLayout>
+
+    </com.jt.sharemap.ui.widget.FloatingActionButtonPlus>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -13,4 +13,19 @@
         <attr name="barMenuMargin" format="reference" />
         <attr name="barBackPaddingDimen" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="FloatingActionButtonPlus">
+        <attr name="animationMode"/>
+        <attr name="position"/>
+        <attr name="mBackgroundColor" format="color"/>
+        <attr name="switchFabIcon" format="reference"/>
+        <attr name="switchFabColor" format="color"/>
+        <attr name="animationDuration" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="FabTagLayout">
+        <attr name="tagText" format="string" />
+        <!--<attr name="tagTextSize" format="dimension" />-->
+        <!--<attr name="tagTextColor" format="color" />-->
+    </declare-styleable>
 </resources>
