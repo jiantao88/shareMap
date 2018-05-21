@@ -16,7 +16,6 @@ import com.jt.sharemap.event.RxEvent;
 
 import java.util.Objects;
 
-import butterknife.Unbinder;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.subjects.PublishSubject;
 
@@ -48,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         setContentView(R.layout.content_main);
         mToolbar = findViewById(R.id.toolbar);
-        mContainerLayout = findViewById(R.id.container);
+        mContainerLayout = findViewById(R.id.base_container);
         boolean isToolbar = initToolbar();
         if (isToolbar) {
             setSupportActionBar(mToolbar);
@@ -64,7 +63,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         //初始化Content
         initContent(getLayoutId());
-        initViews();
         mRxEvent = RxEvent.getInstance();
         mSubject = mRxEvent.registerEvent(registerEvent());
         mDisposableObserver = new ReceiveEvent();

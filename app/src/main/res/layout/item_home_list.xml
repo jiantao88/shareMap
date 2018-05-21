@@ -11,14 +11,14 @@
                                     android:focusable="true"
                                     app:cardBackgroundColor="@color/white"
                                     app:cardCornerRadius="2dp"
-                                    app:cardElevation="1dp"
+                                    app:cardElevation="2dp"
                                     app:contentPadding="5dp"
 >
 
     <ImageView
         android:id="@+id/iv_home_item_bg"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_310"
+        android:layout_height="@dimen/dp_200"
         tools:src="@drawable/register_btn_bg"/>
 
     <LinearLayout android:layout_width="wrap_content"

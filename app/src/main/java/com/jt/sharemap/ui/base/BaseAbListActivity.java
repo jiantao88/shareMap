@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author zhangjiantao
  */
 
 public abstract class BaseAbListActivity<P extends BasePresenter<V>, V extends IView, T> extends BasePresenterActivity<P, V> implements LMRecyclerView.OnFooterAutoLoadMoreListener, IListDataView<T> {

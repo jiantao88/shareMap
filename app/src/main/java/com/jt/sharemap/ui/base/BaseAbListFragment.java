@@ -37,9 +37,9 @@ public abstract class BaseAbListFragment<P extends BasePresenter<V>, V extends I
 
     @Override
     protected void initViews(View view) {
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
-        mContainerLayout = (ContainerLayout) view.findViewById(R.id.containerLayout);
-        mRecyclerView = (LMRecyclerView) view.findViewById(R.id.recyclerView);
+        mRefreshLayout = view.findViewById(R.id.refreshLayout);
+        mContainerLayout = view.findViewById(R.id.containerLayout);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
     }
 
     @Override
