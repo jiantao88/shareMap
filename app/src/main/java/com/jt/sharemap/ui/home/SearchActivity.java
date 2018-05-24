@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.jt.sharemap.R;
 import com.jt.sharemap.ui.base.BaseActivity;
+import com.jt.sharemap.utils.IMMLeaks;
 
 /**
  * <pre>
@@ -64,6 +65,12 @@ public class SearchActivity extends BaseActivity{
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        IMMLeaks.fixFocusedViewLeak(this.getApplication());
     }
 
     @Override
