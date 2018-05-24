@@ -31,4 +31,6 @@
     <string name="error_loading">加载失败,点击重新加载</string>
     <string name="loading_more">加载更多</string>
     <string name="no_more_date">没有更多数据了</string>
+    <string name="search">搜索</string>
+    <string name="search_keyword">关键词</string>
 </resources>
