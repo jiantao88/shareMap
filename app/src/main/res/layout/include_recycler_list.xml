@@ -8,16 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.jt.sharemap.ui.widget.ContainerLayout
+        <com.fenxiangditu.sharemap.ui.widget.ContainerLayout
             android:id="@+id/containerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.jt.sharemap.ui.widget.LMRecyclerView
+            <com.fenxiangditu.sharemap.ui.widget.LMRecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </com.jt.sharemap.ui.widget.ContainerLayout>
+        </com.fenxiangditu.sharemap.ui.widget.ContainerLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
