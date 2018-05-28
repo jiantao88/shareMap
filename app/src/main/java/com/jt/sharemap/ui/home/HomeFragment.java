@@ -1,11 +1,14 @@
 package com.jt.sharemap.ui.home;
 
+import android.content.Intent;
 import android.view.View;
 
+import com.jt.sharemap.common.Const;
 import com.jt.sharemap.net.bean.HomeBean;
 import com.jt.sharemap.ui.adapter.BaseListAdapter;
 import com.jt.sharemap.ui.adapter.HomeListAdapter;
 import com.jt.sharemap.ui.base.BaseAbListFragment;
+import com.jt.sharemap.ui.mapdetail.MapDetailActivity;
 import com.jt.sharemap.utils.ToastUtils;
 
 import java.util.List;
@@ -53,6 +56,9 @@ public class HomeFragment extends BaseAbListFragment<HomePresenrer, HomeContract
 
     @Override
     public void OnItemClick(String itemId) {
+        Intent intent = new Intent(getActivity(),MapDetailActivity.class);
+        intent.putExtra(Const.BUNDLE_KEY.MAP_ID,itemId);
+        startActivity(intent);
         ToastUtils.showToast(getContext(), itemId);
     }
 }

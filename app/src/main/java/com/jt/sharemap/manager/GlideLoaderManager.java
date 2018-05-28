@@ -16,6 +16,7 @@ public class GlideLoaderManager {
     private static RequestOptions nomal_image_options = RequestOptions.placeholderOf(R.drawable.iv_img_default)
             .centerCrop();
     private static RequestOptions head_options = RequestOptions.placeholderOf(R.mipmap.ic_launcher);
+    private static RequestOptions round_options = RequestOptions.placeholderOf(R.mipmap.ic_launcher).circleCrop();
 
     public static void loadImage(String url, final ImageView imageView, int type) {
 
@@ -25,6 +26,9 @@ public class GlideLoaderManager {
                 break;
             case Const.IMAGE_LOADER.NOMAL_IMG:
                 Glide.with(AppContext.getContext()).load(url).apply(nomal_image_options).into(imageView);
+                break;
+            case Const.IMAGE_LOADER.ROUND_IMG:
+                Glide.with(AppContext.getContext()).load(url).apply(round_options).into(imageView);
                 break;
             default:
                 break;

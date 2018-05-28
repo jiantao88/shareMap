@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.fab_1)
     FabTagLayout mFab_1;
     @BindView(R.id.nav_view)
-    NavigationView mNavView;
+    NavigationView mNavigationView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.fab_2)
@@ -97,5 +97,19 @@ public class MainActivity extends BaseActivity {
                 0);
         mToggle.syncState();
         mDrawerLayout.addDrawerListener(mToggle);
+        mNavigationView.setItemIconTintList(null);
+        mNavigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
     }
+
+
+    //设置侧滑item click
+    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+
+            }
+            return true;
+        }
+    };
 }

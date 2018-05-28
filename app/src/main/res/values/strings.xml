@@ -33,4 +33,6 @@
     <string name="no_more_date">没有更多数据了</string>
     <string name="search">搜索</string>
     <string name="search_keyword">关键词</string>
+    <string name="map_detail">地图详情</string>
+    <string name="look_map_detail">查看地图详情</string>
 </resources>

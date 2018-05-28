@@ -85,7 +85,7 @@ public interface ApiServer {
      * @return
      */
     @GET(UrlConstainer.MAP_DETAIL)
-    Observable<MapDetailBean> getMapDetail(@Query("mapId") String mapId);
+    Observable<BaseBean<MapDetailBean>> getMapDetail(@Query("mapId") String mapId);
 
     /**
      * 个人信息上传

@@ -34,6 +34,7 @@ public class Const {
         public static final String CHAPTER_NAME = "chapter_name";
         public static final String INTENT_ACTION_TYPE = "intent_action_type";
         public static final String COLLECT_TYPE = "collect_type";
+        public static final String MAP_ID = "map_id";
         public static final int INTENT_ACTION_TREE = 1;
         public static final int INTENT_ACTION_LIST = 2;
     }
@@ -43,6 +44,7 @@ public class Const {
     public static class IMAGE_LOADER {
         public static final int HEAD_IMG = 0;
         public static final int NOMAL_IMG = 1;
+        public static final int ROUND_IMG = 2;
     }
 
     //当前页面状态

@@ -16,6 +16,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("../my-release-key.keystore")
+            keyAlias "renrenmap"
+
+            keyPassword 'Welcome!@#123'
+            storePassword 'Welcome!@#123'
+        }
+    }
 }
 
 dependencies {
@@ -68,4 +77,12 @@ dependencies {
      */
     implementation "com.jakewharton:butterknife:8.8.1"
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+
+    /**
+     * 地图
+     */
+    //定位功能
+    implementation 'com.amap.api:location:4.0.1'
+    //搜索功能
+    implementation 'com.amap.api:search:6.1.0'
 }
