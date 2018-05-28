@@ -4,19 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import sharemap.R;import com.fenxiangditu.sharemap.common.Const;
+import com.fenxiangditu.sharemap.common.Const;
 import com.fenxiangditu.sharemap.manager.GlideLoaderManager;
 import com.fenxiangditu.sharemap.net.bean.MapDetailBean;
+import com.fenxiangditu.sharemap.ui.adapter.MapDetailListAdapter;
 import com.fenxiangditu.sharemap.ui.base.BasePresenterActivity;
+import com.fenxiangditu.sharemap.ui.widget.FullyLinearLayoutManager;
+import com.fenxiangditu.sharemap.utils.ToastUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import sharemap.R;
 
 /**
  * <pre>
@@ -46,8 +54,11 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
     ImageView mIvMapDetail2;
     @BindView(R.id.cv_map)
     CardView mCvMap;
+    @BindView(R.id.rv_map_detail)
+    RecyclerView mRecyclerView;
 
     private String mapid;
+    private String mapMarkersUrl = "";
 
     @Override
     protected MapDetailPresenter createPresenter() {
@@ -62,6 +73,18 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
             mPresenter.getData(mapid);
         }
         mToolbar.setTitle(getString(R.string.map_detail));
+
+        FullyLinearLayoutManager layoutManager = new FullyLinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setAutoMeasureEnabled(false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setFocusable(false);
+        mRecyclerView.setHasFixedSize(true);
+        // 添加分割线。
+//        ListViewDecoration decoration = new ListViewDecoration();
+//        decoration.setLeft(getResources().getDimensionPixelSize(R.dimen.dp_15));
+//        mRecyclerView.addItemDecoration(decoration);        //防止滑动不流畅
+        mRecyclerView.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -91,7 +114,6 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
 
     @Override
     protected void initViews() {
-
     }
 
     @Override
@@ -102,7 +124,31 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
         mTvMapDetailName.setText(mapDetailBean.getMap().getTitle());
         mTvMapSubTitle.setText(mapDetailBean.getMap().getDescription());
         mTvFavor.setText(String.format("%s", mapDetailBean.getCount()));
+        spliceMapUrl(mapDetailBean);
+        MapDetailListAdapter mapDetailListAdapter = new MapDetailListAdapter(MapDetailActivity.this, mapDetailBean.getLocations());
+        mapDetailListAdapter.setOnMapDetailItemClickListener(new MapDetailListAdapter.OnMapDetailItemClickListener() {
+            @Override
+            public void OnItemClick(MapDetailBean.LocationsBean bean) {
+                ToastUtils.showToast(MapDetailActivity.this, bean.get_id());
+            }
+        });
+        mRecyclerView.setAdapter(mapDetailListAdapter);
 
+    }
+
+    private void spliceMapUrl(MapDetailBean mapDetailBean) {
+        List<MapDetailBean.LocationsBean> locations = mapDetailBean.getLocations();
+        for (int i = 0; i < locations.size(); i++) {
+            List<Double> lnglat = locations.get(i).getLnglat();
+            if (i <= 9) {
+                if (i < 9 && i != locations.size() - 1) {
+                    mapMarkersUrl += "mid,0x387ef5," + i + ":" + lnglat.get(0) + "," + lnglat.get(1) + "|";
+                } else {
+                    mapMarkersUrl = Const.MAP.MAP_MARKERS_URL + mapMarkersUrl + "mid,0x387ef5," + i + ":" + lnglat.get(0) + "," + lnglat.get(1) + "&key=" + Const.MAP.MAP_KEY;
+                }
+            }
+        }
+        GlideLoaderManager.loadImage(mapMarkersUrl, mIvMapDetail2, Const.IMAGE_LOADER.NOMAL_IMG);
     }
 
     @Override
@@ -115,7 +161,7 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
 
     }
 
-    @OnClick({R.id.tv_chat, R.id.tv_favor,R.id.cv_map})
+    @OnClick({R.id.tv_chat, R.id.tv_favor, R.id.cv_map})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_chat:

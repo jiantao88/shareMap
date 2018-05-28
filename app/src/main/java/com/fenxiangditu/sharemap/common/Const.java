@@ -66,4 +66,8 @@ public class Const {
     public static final boolean IS_PRINT_LOG_TO_FILE = false;
 
 
+    public static class MAP {
+        public static final String MAP_KEY = "c3b4477c4c2ad477141ee0358e4d1c82";
+        public static final String MAP_MARKERS_URL = "http://restapi.amap.com/v3/staticmap?size=400*200&markers=";
+    }
 }

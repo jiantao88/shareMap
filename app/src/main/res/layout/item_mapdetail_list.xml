@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_80"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:id="@+id/rl_map_detail_item"
+>
+
+    <ImageView
+        android:id="@+id/iv_map_detail_item"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        tools:src="@mipmap/ic_icon"/>
+
+    <TextView
+        android:id="@+id/tv_detail_item_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_10"
+        android:drawablePadding="@dimen/dp_10"
+        android:drawableRight="@drawable/ic_more_right"
+        android:text="@string/detail" android:textColor="@color/colorPrimary"/>
+
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_toLeftOf="@id/tv_detail_item_detail"
+                    android:layout_toRightOf="@id/iv_map_detail_item"
+                    android:orientation="vertical"
+    >
+        <TextView
+            android:id="@+id/tv_map_detail_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/sp_15"
+            android:maxLines="1"
+            tools:text="lskdjflkweflkwjlaksj"/>
+        <TextView
+            android:id="@+id/tv_map_detail_item_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_map_detail_item_title"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_13"
+            android:maxLines="1"
+            tools:text="@string/empty_sms_code"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

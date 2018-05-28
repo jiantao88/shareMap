@@ -234,7 +234,7 @@ public class MapDetailBean {
         private int __v;
         private String addDate;
         private List<Double> lnglat;
-        private List<?> imgs;
+        private List<String> imgs;
 
         public String get_id() {
             return _id;
@@ -300,11 +300,11 @@ public class MapDetailBean {
             this.lnglat = lnglat;
         }
 
-        public List<?> getImgs() {
+        public List<String> getImgs() {
             return imgs;
         }
 
-        public void setImgs(List<?> imgs) {
+        public void setImgs(List<String> imgs) {
             this.imgs = imgs;
         }
 
