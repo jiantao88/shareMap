@@ -13,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import sharemap.R;import com.fenxiangditu.sharemap.ui.base.BaseActivity;
+import com.fenxiangditu.sharemap.ui.base.BaseActivity;
 import com.fenxiangditu.sharemap.utils.DementionUtil;
 import com.fenxiangditu.sharemap.utils.ViewUtil;
+
+import sharemap.R;
 
 
 /**
@@ -82,6 +84,7 @@ public class SMToolBar extends RelativeLayout implements View.OnClickListener {
         initAttr(attrs);
         mIvLeft.setOnClickListener(this);
         mTvRight.setOnClickListener(this);
+        mIvRight.setOnClickListener(this);
     }
 
     private void initAttr(AttributeSet attrs) {

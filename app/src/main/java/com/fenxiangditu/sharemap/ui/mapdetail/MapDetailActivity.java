@@ -17,6 +17,8 @@ import com.fenxiangditu.sharemap.net.bean.MapDetailBean;
 import com.fenxiangditu.sharemap.ui.adapter.MapDetailListAdapter;
 import com.fenxiangditu.sharemap.ui.base.BasePresenterActivity;
 import com.fenxiangditu.sharemap.ui.widget.FullyLinearLayoutManager;
+import com.fenxiangditu.sharemap.ui.widget.SMToolBar;
+import com.fenxiangditu.sharemap.ui.widget.ShareView;
 import com.fenxiangditu.sharemap.utils.ToastUtils;
 
 import java.util.List;
@@ -56,10 +58,12 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
     CardView mCvMap;
     @BindView(R.id.rv_map_detail)
     RecyclerView mRecyclerView;
+    @BindView(R.id.tb_map_detail)
+    SMToolBar mSMToolBar;
 
     private String mapid;
     private String mapMarkersUrl = "";
-
+    private ShareView mShareView;
     @Override
     protected MapDetailPresenter createPresenter() {
         return new MapDetailPresenter();
@@ -72,8 +76,20 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
         if (!TextUtils.isEmpty(mapid)) {
             mPresenter.getData(mapid);
         }
-        mToolbar.setTitle(getString(R.string.map_detail));
+        mShareView = new ShareView(this);
+        mSMToolBar.setRightImage(R.drawable.ic_menu_share);
+        mSMToolBar.setMiddleTitle(R.string.map_detail);
+        mSMToolBar.setNavOnClickListener(new SMToolBar.NavOnClickListener() {
+            @Override
+            public void leftOnClickListener() {
+                finish();
+            }
 
+            @Override
+            public void rightOnClickListener() {
+                mShareView.showSharePop();
+            }
+        });
         FullyLinearLayoutManager layoutManager = new FullyLinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.setAutoMeasureEnabled(false);
@@ -104,7 +120,7 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
 
     @Override
     protected boolean initToolbar() {
-        return true;
+        return false;
     }
 
     @Override

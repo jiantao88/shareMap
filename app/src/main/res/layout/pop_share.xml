@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="286dp"
+                    android:layout_margin="@dimen/dp_10"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/btn_c5_bg">
+        <TextView
+            android:id="@+id/tv_share_weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_42"
+            android:layout_marginTop="@dimen/dp_28"
+            android:drawablePadding="@dimen/dp_3"
+            android:drawableTop="@drawable/ic_share_weixin"
+            android:gravity="center"
+            android:text="@string/weixin" android:textColor="@color/C3"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_share_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_share_weixin"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="@dimen/dp_3"
+            android:drawableTop="@drawable/ic_share_friends"
+            android:gravity="center"
+            android:text="@string/weixin_friend" android:textColor="@color/C3"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_share_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_share_weixin"
+            android:layout_below="@id/tv_share_weixin"
+            android:layout_marginTop="@dimen/dp_30"
+            android:drawablePadding="@dimen/dp_3"
+            android:drawableTop="@drawable/ic_share_qq"
+            android:gravity="center"
+            android:text="@string/qq" android:textColor="@color/C3"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/tv_share_qzone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_share_qq"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="@dimen/dp_1_5"
+            android:drawableTop="@drawable/ic_share_qzone"
+            android:gravity="center"
+            android:text="@string/qzone" android:textColor="@color/C3"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/tv_share_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_share_qq"
+            android:layout_marginRight="@dimen/dp_42"
+            android:background="@color/transparent"
+            android:drawablePadding="@dimen/dp_3"
+            android:drawableTop="@drawable/ic_share_copy"
+            android:gravity="center"
+            android:text="@string/copy_link" android:textColor="@color/C3"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/tv_share_weibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_share_friends"
+            android:layout_alignBottom="@+id/tv_share_friends"
+            android:layout_alignEnd="@+id/tv_share_copy"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_42"
+            android:drawablePadding="@dimen/dp_3"
+            android:drawableTop="@drawable/ic_share_weibo" android:gravity="center"
+            android:text="@string/weibo"
+            android:textColor="@color/C3" android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_pop_share_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentBottom="true"
+            android:gravity="center" android:text="@string/cancel"/>
+        <View android:layout_width="match_parent" android:layout_height="@dimen/dp_1"
+              android:layout_above="@id/tv_pop_share_cancel"
+              android:background="@color/L3"/>
+    </RelativeLayout>
+</FrameLayout>

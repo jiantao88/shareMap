@@ -61,5 +61,9 @@
         <item name="rippleColor">#a6a6a6</item>
     </style>
 
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_show_anim</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_hidden_anim</item>
+    </style>
 
 </resources>
