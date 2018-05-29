@@ -1,6 +1,8 @@
 package com.fenxiangditu.sharemap.ui.login;
 
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,13 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import sharemap.R;import com.fenxiangditu.sharemap.presenter.BasePresenter;
+import com.fenxiangditu.sharemap.presenter.BasePresenter;
 import com.fenxiangditu.sharemap.ui.base.BasePresenterActivity;
 import com.fenxiangditu.sharemap.utils.KeyBoardUtil;
 
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import sharemap.R;
 
 /**
  * @author zhangjiantao
@@ -46,13 +50,10 @@ public class LoginActivity extends BasePresenterActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_login;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+        initViews();
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +65,16 @@ public class LoginActivity extends BasePresenterActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected boolean initToolbar() {
+        return true;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    private void initViews() {
         mLoginAcountFragment = new LoginAcountFragment();
         mLoginSmsFragment = new LoginSmsFragment();
         mFragmentManager = getSupportFragmentManager();

@@ -5,7 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import sharemap.R;import com.fenxiangditu.sharemap.common.Const;
+import com.fenxiangditu.sharemap.common.Const;
 import com.fenxiangditu.sharemap.presenter.BasePresenter;
 import com.fenxiangditu.sharemap.ui.IListDataView;
 import com.fenxiangditu.sharemap.ui.IView;
@@ -15,6 +15,8 @@ import com.fenxiangditu.sharemap.ui.widget.LMRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import sharemap.R;
 
 /**
  * @author zhangjiantao
@@ -35,6 +37,7 @@ public abstract class BaseAbListActivity<P extends BasePresenter<V>, V extends I
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        initViews();
         mRefreshLayout.setOnRefreshListener(mOnRefreshListener);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        mRecyclerView.setItemAnimator(new NoAlphaItemAnimator());
@@ -49,8 +52,8 @@ public abstract class BaseAbListActivity<P extends BasePresenter<V>, V extends I
     }
 
 
-    @Override
-    protected void initViews() {
+
+    private void initViews() {
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
         mContainerLayout = (ContainerLayout) findViewById(R.id.containerLayout);
         mRecyclerView = (LMRecyclerView) findViewById(R.id.recyclerView);

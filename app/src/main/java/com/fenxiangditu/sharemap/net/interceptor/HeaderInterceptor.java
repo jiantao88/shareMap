@@ -3,7 +3,7 @@ package com.fenxiangditu.sharemap.net.interceptor;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import com.fenxiangditu.sharemap.manager.UserInfoManger;
+import com.fenxiangditu.sharemap.manager.UserInfoManager;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class HeaderInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request originalRequest = chain.request();
         Headers.Builder headers = originalRequest.headers().newBuilder();
-        String userid = UserInfoManger.getUserId();
+        String userid = UserInfoManager.getUserId();
         if (!TextUtils.isEmpty(userid)) {
             headers.add(X_USER_ID, userid);
         }

@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 
-import sharemap.R;import com.fenxiangditu.sharemap.manager.UserInfoManger;
+import com.fenxiangditu.sharemap.manager.UserInfoManager;
 import com.fenxiangditu.sharemap.net.bean.LoginBean;
 import com.fenxiangditu.sharemap.ui.base.BaseActivity;
 import com.fenxiangditu.sharemap.ui.home.MainActivity;
+
 import java.lang.ref.WeakReference;
+
+import sharemap.R;
 
 
 /**
@@ -37,9 +40,9 @@ public class LauncherActivity extends BaseActivity {
 
     //自动登录
     private void autoLogin() {
-        if (UserInfoManger.isLogin()) {
+        if (UserInfoManager.isLogin()) {
             //自动登录
-            userBean = UserInfoManger.getUserInfo();
+            userBean = UserInfoManager.getUserInfo();
         }
         startToActivity();
     }
@@ -84,10 +87,6 @@ public class LauncherActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void initViews() {
-
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

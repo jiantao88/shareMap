@@ -104,14 +104,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void getIntent(Intent intent);
 
-    protected abstract void initViews();
-
 
     private void initContent(int layoutId) {
         if (layoutId != 0) {
             View contentView = LayoutInflater.from(this).inflate(layoutId, mContainerLayout, false);
             mContainerLayout.addView(contentView);
-            initViews();
         }
     }
     /**

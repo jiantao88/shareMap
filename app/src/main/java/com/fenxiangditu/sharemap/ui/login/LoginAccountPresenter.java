@@ -1,6 +1,6 @@
 package com.fenxiangditu.sharemap.ui.login;
 
-import com.fenxiangditu.sharemap.manager.UserInfoManger;
+import com.fenxiangditu.sharemap.manager.UserInfoManager;
 import com.fenxiangditu.sharemap.net.bean.LoginBean;
 import com.fenxiangditu.sharemap.net.callback.RxObserver;
 import com.fenxiangditu.sharemap.presenter.BasePresenter;
@@ -28,8 +28,8 @@ public class LoginAccountPresenter extends BasePresenter<LoginAcountContract.ILo
         mLoginModel.login(phone, password, new RxObserver<LoginBean>(this) {
             @Override
             protected void onSuccess(LoginBean data) {
-                UserInfoManger.saveUserInfo(data);
-                UserInfoManger.saveIsLogin(true);
+                UserInfoManager.saveUserInfo(data);
+                UserInfoManager.saveIsLogin(true);
                 mILoginAcountView.hideLoading();
                 mILoginAcountView.LoginSuccess();
             }

@@ -72,10 +72,6 @@ public class RegisterActivity extends BasePresenterActivity<RegisterPresenter, R
         return R.layout.activity_register;
     }
 
-    @Override
-    protected void initViews() {
-
-    }
 
     @OnClick({R.id.tv_send_sms_code, R.id.btn_register})
     public void onViewClicked(View view) {

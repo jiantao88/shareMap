@@ -91,9 +91,4 @@ public class SearchActivity extends BaseActivity{
     protected void getIntent(Intent intent) {
 
     }
-
-    @Override
-    protected void initViews() {
-
-    }
 }

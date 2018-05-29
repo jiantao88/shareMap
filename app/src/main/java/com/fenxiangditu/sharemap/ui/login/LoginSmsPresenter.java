@@ -1,6 +1,6 @@
 package com.fenxiangditu.sharemap.ui.login;
 
-import com.fenxiangditu.sharemap.manager.UserInfoManger;
+import com.fenxiangditu.sharemap.manager.UserInfoManager;
 import com.fenxiangditu.sharemap.net.bean.LoginBean;
 import com.fenxiangditu.sharemap.net.bean.SmsCodeBean;
 import com.fenxiangditu.sharemap.net.callback.RxObserver;
@@ -29,8 +29,8 @@ public class LoginSmsPresenter extends BasePresenter<LoginSmsContract.ILoginSmsV
         mLoginModel.login_sms(phone, smsCode, new RxObserver<LoginBean>(this) {
             @Override
             protected void onSuccess(LoginBean data) {
-                UserInfoManger.saveUserInfo(data);
-                UserInfoManger.saveIsLogin(true);
+                UserInfoManager.saveUserInfo(data);
+                UserInfoManager.saveIsLogin(true);
                 mILoginSmsView.hideLoading();
                 mILoginSmsView.LoginSuccess();
 

@@ -19,7 +19,7 @@ import javax.crypto.spec.SecretKeySpec;
  *     version: 1.0
  * </pre>
  */
-public class UserInfoManger {
+public class UserInfoManager {
     private static LoginBean loginBean;
     private static String userId;
 

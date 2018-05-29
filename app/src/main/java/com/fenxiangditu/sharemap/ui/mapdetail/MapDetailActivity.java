@@ -129,10 +129,6 @@ public class MapDetailActivity extends BasePresenterActivity<MapDetailPresenter,
     }
 
     @Override
-    protected void initViews() {
-    }
-
-    @Override
     public void setData(MapDetailBean mapDetailBean) {
         GlideLoaderManager.loadImage(mapDetailBean.getMap().getCoverImg(), mIvMapDetail, Const.IMAGE_LOADER.NOMAL_IMG);
         GlideLoaderManager.loadImage(mapDetailBean.getMap().getCreater().getAvatar(), mIvMapDetailUser, Const.IMAGE_LOADER.ROUND_IMG);
