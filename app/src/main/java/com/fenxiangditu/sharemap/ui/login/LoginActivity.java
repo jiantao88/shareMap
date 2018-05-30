@@ -85,7 +85,7 @@ public class LoginActivity extends BasePresenterActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment fragmentById = mFragmentManager.findFragmentById(R.id.fl_containt);
-                if (fragmentById.getTag().equals(FRAGMENT_TAG_ACCOUNT)){
+                if (Objects.equals(fragmentById.getTag(), FRAGMENT_TAG_ACCOUNT)){
                     mFragmentManager.beginTransaction()
                             .replace(R.id.fl_containt, mLoginSmsFragment, FRAGMENT_TAG_SMS)
                             .commit();

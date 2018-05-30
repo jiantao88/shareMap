@@ -41,6 +41,7 @@
         <activity android:name="com.fenxiangditu.sharemap.ui.register.RegisterActivity"/>
         <activity android:name="com.fenxiangditu.sharemap.ui.home.SearchActivity"/>
         <activity android:name="com.fenxiangditu.sharemap.ui.mapdetail.MapDetailActivity"/>
+        <activity android:name="com.fenxiangditu.sharemap.ui.map.MapCollectionActivity"/>
     </application>
 
 </manifest>

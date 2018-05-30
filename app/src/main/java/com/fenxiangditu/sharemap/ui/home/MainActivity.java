@@ -20,6 +20,7 @@ import com.fenxiangditu.sharemap.manager.UserInfoManager;
 import com.fenxiangditu.sharemap.net.bean.LoginBean;
 import com.fenxiangditu.sharemap.ui.base.BaseActivity;
 import com.fenxiangditu.sharemap.ui.login.LoginActivity;
+import com.fenxiangditu.sharemap.ui.map.MapCollectionActivity;
 import com.fenxiangditu.sharemap.ui.widget.FabTagLayout;
 import com.fenxiangditu.sharemap.ui.widget.FloatingActionButtonPlus;
 import com.fenxiangditu.sharemap.utils.ToastUtils;
@@ -31,7 +32,7 @@ import sharemap.R;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.fab_1)
-    FabTagLayout mFab_1;
+    FabTagLayout mFab1;
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
     @BindView(R.id.drawer_layout)
@@ -124,8 +125,26 @@ public class MainActivity extends BaseActivity {
         mNavigationView.setItemIconTintList(null);
         mNavigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
         initNavigationHeaderView();
+        mFabMenu.setOnItemClickListener(new FloatingActionButtonPlus.OnItemClickListener() {
+            @Override
+            public void onItemClick(FabTagLayout tagView, int position) {
+                if (UserInfoManager.isLogin()){
+                    if (position==0){
+                        startActivity(new Intent(MainActivity.this, MapCollectionActivity.class));
+                        ToastUtils.showToast(AppContext.getContext(),"地图集");
+                    }else {
+                        ToastUtils.showToast(AppContext.getContext(),"地点");
+
+                    }
+                }else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+                }
+            }
+        });
 
     }
+
     private void setUserData() {
         if (UserInfoManager.isLogin()) {
             LoginBean userBean = UserInfoManager.getUserInfo();
