@@ -85,4 +85,9 @@ dependencies {
     implementation 'com.amap.api:location:4.0.1'
     //搜索功能
     implementation 'com.amap.api:search:6.1.0'
+
+    implementation('com.jph.takephoto:takephoto_library:4.0.3') {
+        exclude group: 'com.github.bumptech.glide'
+    }
+
 }
