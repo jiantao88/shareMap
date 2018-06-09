@@ -56,5 +56,8 @@
     <string name="confirm">确认</string>
 
     <string name="add_map_collection">添加地图集</string>
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">需要您授权权限</string>
+    <string name="setting">设置</string>
 
 </resources>

@@ -20,6 +20,7 @@ import com.fenxiangditu.sharemap.manager.UserInfoManager;
 import com.fenxiangditu.sharemap.net.bean.LoginBean;
 import com.fenxiangditu.sharemap.ui.base.BaseActivity;
 import com.fenxiangditu.sharemap.ui.login.LoginActivity;
+import com.fenxiangditu.sharemap.ui.map.LocationActivity;
 import com.fenxiangditu.sharemap.ui.map.MapCollectionActivity;
 import com.fenxiangditu.sharemap.ui.widget.FabTagLayout;
 import com.fenxiangditu.sharemap.ui.widget.FloatingActionButtonPlus;
@@ -133,6 +134,7 @@ public class MainActivity extends BaseActivity {
                         startActivity(new Intent(MainActivity.this, MapCollectionActivity.class));
                         ToastUtils.showToast(AppContext.getContext(),"地图集");
                     }else {
+                        startActivity(new Intent(MainActivity.this, LocationActivity.class));
                         ToastUtils.showToast(AppContext.getContext(),"地点");
 
                     }

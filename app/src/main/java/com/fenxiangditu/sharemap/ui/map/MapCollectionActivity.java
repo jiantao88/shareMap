@@ -13,7 +13,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.fenxiangditu.sharemap.manager.GlideLoaderManager;
 import com.fenxiangditu.sharemap.ui.base.BaseTakePhotoActivity;
 import com.fenxiangditu.sharemap.utils.BitmapUtils;
 import com.fenxiangditu.sharemap.utils.ToastUtils;
