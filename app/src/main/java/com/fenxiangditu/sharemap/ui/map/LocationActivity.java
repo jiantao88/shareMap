@@ -4,12 +4,12 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -28,8 +29,21 @@ import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.services.geocoder.GeocodeAddress;
+import com.amap.api.services.geocoder.GeocodeQuery;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.fenxiangditu.sharemap.ui.base.BaseActivity;
+import com.fenxiangditu.sharemap.utils.BrandUtils;
+import com.fenxiangditu.sharemap.utils.ToastUtils;
+import com.zaaach.citypicker.CityPicker;
+import com.zaaach.citypicker.adapter.OnPickListener;
+import com.zaaach.citypicker.model.City;
+import com.zaaach.citypicker.model.HotCity;
+import com.zaaach.citypicker.model.LocatedCity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +51,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pub.devrel.easypermissions.EasyPermissions;
 import sharemap.R;
 
 /**
@@ -47,7 +62,7 @@ import sharemap.R;
  *     version: 1.0
  * </pre>
  */
-public class LocationActivity extends BaseActivity implements LocationSource {
+public class LocationActivity extends BaseActivity implements LocationSource, EasyPermissions.PermissionCallbacks {
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
     //声明定位回调监听器
@@ -74,7 +89,7 @@ public class LocationActivity extends BaseActivity implements LocationSource {
     private static final int STROKE_COLOR = Color.argb(180, 3, 145, 255);
     private static final int FILL_COLOR = Color.argb(10, 0, 0, 180);
 
-
+    private AMapLocation mAMapLocation;
     /**
      * 需要进行检测的权限数组
      */
@@ -92,6 +107,7 @@ public class LocationActivity extends BaseActivity implements LocationSource {
      * 判断是否需要检测，防止不停的弹框
      */
     private boolean isNeedCheck = true;
+
     @Override
     protected void receiveEvent(Object object) {
 
@@ -127,6 +143,7 @@ public class LocationActivity extends BaseActivity implements LocationSource {
             aMap = mapView.getMap();
             setUpMap();
         }
+
     }
 
     /**
@@ -206,9 +223,9 @@ public class LocationActivity extends BaseActivity implements LocationSource {
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
+                mAMapLocation = aMapLocation;
                 String city = aMapLocation.getCity();
-                if (aMapLocation != null
-                        && aMapLocation.getErrorCode() == 0) {
+                if (aMapLocation.getErrorCode() == 0) {
 
                     if (!TextUtils.isEmpty(city)) {
                         mTvCity.setText(city);
@@ -218,7 +235,7 @@ public class LocationActivity extends BaseActivity implements LocationSource {
                 }
             }
         });
-        aMap.moveCamera(CameraUpdateFactory.zoomBy(12));
+        aMap.moveCamera(CameraUpdateFactory.zoomBy(10));
         /**
          * 设置定位场景，目前支持三种场景（签到、出行、运动，默认无场景）
          */
@@ -231,71 +248,65 @@ public class LocationActivity extends BaseActivity implements LocationSource {
         }
 
     }
+
     /**
      * 检查权限
-     *
-     * @param
-     * @since 2.5.0
      */
-    private void checkPermissions(String... permissions) {
-        //获取权限列表
-        List<String> needRequestPermissonList = findDeniedPermissions(permissions);
-        if (null != needRequestPermissonList
-                && needRequestPermissonList.size() > 0) {
-            //list.toarray将集合转化为数组
-            ActivityCompat.requestPermissions(this,
-                    needRequestPermissonList.toArray(new String[needRequestPermissonList.size()]),
-                    PERMISSON_REQUESTCODE);
-        }
-    }
+    private void checkPerm() {
+        String[] params = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+        if (EasyPermissions.hasPermissions(this, params)) {
 
-
-    /**
-     * 获取权限集中需要申请权限的列表
-     *
-     * @param permissions
-     * @return
-     * @since 2.5.0
-     */
-    private List<String> findDeniedPermissions(String[] permissions) {
-        List<String> needRequestPermissonList = new ArrayList<String>();
-        //for (循环变量类型 循环变量名称 : 要被遍历的对象)
-        for (String perm : permissions) {
-            if (ContextCompat.checkSelfPermission(this,
-                    perm) != PackageManager.PERMISSION_GRANTED
-                    || ActivityCompat.shouldShowRequestPermissionRationale(
-                    this, perm)) {
-                needRequestPermissonList.add(perm);
-            }
+        } else {
+            EasyPermissions.requestPermissions(this, getString(R.string.request_permission), PERMISSON_REQUESTCODE, params);
         }
-        return needRequestPermissonList;
-    }
-
-    /**
-     * 检测是否说有的权限都已经授权
-     *
-     * @param grantResults
-     * @return
-     * @since 2.5.0
-     */
-    private boolean verifyPermissions(int[] grantResults) {
-        for (int result : grantResults) {
-            if (result != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] paramArrayOfInt) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PERMISSON_REQUESTCODE) {
-            if (!verifyPermissions(paramArrayOfInt)) {      //没有授权
-                showMissingPermissionDialog();              //显示提示信息
-                isNeedCheck = false;
+            checkPerm();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            showMissingPermissionDialog();
+        } else {
+            finish();
+        }
+    }
+
+    public void settingPermissionActivity() {
+        //判断是否为小米系统
+        if (TextUtils.equals(BrandUtils.getSystemInfo().getOs(), BrandUtils.SYS_MIUI)) {
+            Intent miuiIntent = new Intent("miui.intent.action.APP_PERM_EDITOR");
+            miuiIntent.putExtra("extra_pkgname", getPackageName());
+            //检测是否有能接受该Intent的Activity存在
+            List<ResolveInfo> resolveInfos = getPackageManager().queryIntentActivities(miuiIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfos.size() > 0) {
+                startActivityForResult(miuiIntent, PERMISSON_REQUESTCODE);
+                return;
             }
         }
+        //如果不是小米系统 则打开Android系统的应用设置页
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+
     }
 
     /**
@@ -321,7 +332,7 @@ public class LocationActivity extends BaseActivity implements LocationSource {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startAppSettings();
+                        settingPermissionActivity();
                     }
                 });
 
@@ -329,17 +340,7 @@ public class LocationActivity extends BaseActivity implements LocationSource {
 
         builder.show();
     }
-    /**
-     * 启动应用的设置
-     *
-     * @since 2.5.0
-     */
-    private void startAppSettings() {
-        Intent intent = new Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.parse("package:" + getPackageName()));
-        startActivity(intent);
-    }
+
 
     /**
      * 停止定位
@@ -358,12 +359,84 @@ public class LocationActivity extends BaseActivity implements LocationSource {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_city:
+                getPublicCity();
                 break;
             case R.id.iv_location_close:
+                finish();
                 break;
             case R.id.btn_location_confirm:
                 break;
             default:
         }
     }
+
+    private void getPublicCity() {
+        List<HotCity> hotCities = new ArrayList<>();
+        hotCities.add(new HotCity("北京", "北京", "101010100"));
+        hotCities.add(new HotCity("上海", "上海", "101020100"));
+        hotCities.add(new HotCity("广州", "广东", "101280101"));
+        hotCities.add(new HotCity("深圳", "广东", "101280601"));
+        hotCities.add(new HotCity("杭州", "浙江", "101210101"));
+        if (mAMapLocation != null) {
+            //定位完成之后更新数据
+            CityPicker.getInstance().setLocatedCity(new LocatedCity(mAMapLocation.getCity(), mAMapLocation.getProvince(), mAMapLocation.getCityCode()));
+        }
+        CityPicker.getInstance()
+                .setFragmentManager(getSupportFragmentManager())    //此方法必须调用
+                .enableAnimation(true)    //启用动画效果
+                .setHotCities(hotCities)    //指定热门城市
+                .setOnPickListener(new OnPickListener() {
+                    @Override
+                    public void onPick(int position, City data) {
+                        Toast.makeText(getApplicationContext(), data.getName(), Toast.LENGTH_SHORT).show();
+                        getLatlon(data.getName());
+                        mTvCity.setText(data.getName());
+                    }
+
+                    @Override
+                    public void onLocate() {
+
+
+                    }
+                })
+                .show();
+    }
+
+    private void getLatlon(String cityName) {
+
+        GeocodeSearch geocodeSearch = new GeocodeSearch(this);
+        geocodeSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+            @Override
+            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+
+            }
+
+            @Override
+            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+                if (i == 1000) {
+                    if (geocodeResult != null && geocodeResult.getGeocodeAddressList() != null &&
+                            geocodeResult.getGeocodeAddressList().size() > 0) {
+
+                        GeocodeAddress geocodeAddress = geocodeResult.getGeocodeAddressList().get(0);
+                        double latitude = geocodeAddress.getLatLonPoint().getLatitude();//緯度
+                        double longititude = geocodeAddress.getLatLonPoint().getLongitude();//經度
+                        String adcode = geocodeAddress.getAdcode();//區域編碼
+
+                        LatLng latLng = new LatLng(latitude, longititude);
+                        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
+
+                    } else {
+                        ToastUtils.showToast(LocationActivity.this, "地址名出錯");
+                    }
+                }
+            }
+        });
+
+        GeocodeQuery geocodeQuery = new GeocodeQuery(cityName.trim(), "29");
+        geocodeSearch.getFromLocationNameAsyn(geocodeQuery);
+
+    }
+
+
 }
