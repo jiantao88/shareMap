@@ -53,12 +53,25 @@
     <string name="public_map">公开地图</string>
     <string name="private_map">私密地图</string>
     <string name="cooperation_map">协同地图</string>
-    <string name="confirm">确认</string>
+    <string name="confirm">确定</string>
 
     <string name="add_map_collection">添加地图集</string>
+    <string name="add_to_may_map_collection">添加到我的地图集</string>
     <string name="notifyTitle">提示</string>
     <string name="notifyMsg">需要您授权权限</string>
     <string name="setting">设置</string>
     <string name="request_permission">需要获取本地权限,否则无法运行app</string>
+    <string name="share_your_feel">分享一下你对这里的感受吧</string>
+
+    <string name="image_complete">完成</string>
+    <string name="image_select_pic_number_at_most">您最多只能选择%d张图片</string>
+    <string name="image_preview">预览</string>
+    <string name="image_complete_number">完成(%1$d/%2$d)</string>
+    <string name="image_preview_number">预览(%1$d)</string>
+    <string name="image_zero_number">0张</string>
+    <string name="select_from_pic">从相册选择</string>
+    <string name="select_from_camera">拍摄</string>
+    <string name="gallary">相册</string>
+    <string name="all_pic">所有图片</string>
 
 </resources>

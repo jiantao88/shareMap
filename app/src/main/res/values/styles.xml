@@ -66,4 +66,8 @@
         <item name="android:windowExitAnimation">@anim/popupwindow_hidden_anim</item>
     </style>
 
+    <declare-styleable name="RectImageView">
+        <attr name="iv_ratio" format="float"/>
+    </declare-styleable>
+
 </resources>

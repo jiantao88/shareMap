@@ -63,6 +63,9 @@
         <activity android:name="com.fenxiangditu.sharemap.ui.map.LocationActivity"
                   android:theme="@style/DefaultCityPickerTheme"
         />
+        <activity android:name="com.fenxiangditu.sharemap.ui.map.LocationUploadActivity"/>
+        <activity android:name="com.fenxiangditu.sharemap.ui.map.PreviewSingleImageActivity"/>
+        <activity android:name="com.fenxiangditu.sharemap.ui.map.ImageChooseActivity"/>
 
         <service android:name="com.amap.api.location.APSService"/>
 

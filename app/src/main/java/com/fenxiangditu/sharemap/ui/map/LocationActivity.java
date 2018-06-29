@@ -103,10 +103,6 @@ public class LocationActivity extends BaseActivity implements LocationSource, Ea
 
     private static final int PERMISSON_REQUESTCODE = 0;
 
-    /**
-     * 判断是否需要检测，防止不停的弹框
-     */
-    private boolean isNeedCheck = true;
 
     @Override
     protected void receiveEvent(Object object) {
@@ -253,11 +249,11 @@ public class LocationActivity extends BaseActivity implements LocationSource, Ea
      * 检查权限
      */
     private void checkPerm() {
-        String[] params = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
-        if (EasyPermissions.hasPermissions(this, params)) {
+//        String[] params = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+        if (EasyPermissions.hasPermissions(this, needPermissions)) {
 
         } else {
-            EasyPermissions.requestPermissions(this, getString(R.string.request_permission), PERMISSON_REQUESTCODE, params);
+            EasyPermissions.requestPermissions(this, getString(R.string.request_permission), PERMISSON_REQUESTCODE, needPermissions);
         }
     }
 
@@ -285,8 +281,6 @@ public class LocationActivity extends BaseActivity implements LocationSource, Ea
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             showMissingPermissionDialog();
-        } else {
-            finish();
         }
     }
 
@@ -365,6 +359,8 @@ public class LocationActivity extends BaseActivity implements LocationSource, Ea
                 finish();
                 break;
             case R.id.btn_location_confirm:
+                Intent intent = new Intent(LocationActivity.this,LocationUploadActivity.class);
+                startActivity(intent);
                 break;
             default:
         }
